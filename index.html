@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faridi Stones Ajmer - Royal Gemstone Ledger & Client Dossier</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Phosphor Icons & QRCode -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Cinzel"', 'serif'],
+            royal: ['"Playfair Display"', 'serif'],
+            mono: ['"Space Mono"', 'monospace']
+          },
+          colors: {
+            regal: {
+              gold: '#c59a3f',
+              darkgold: '#8f681a',
+              amber: '#dfb15b',
+              lightgold: '#faedd2',
+              cream: '#faf8f3',
+              emerald: '#11634b',
+              emeraldLight: '#e4f4ee',
+              ruby: '#9b1b30',
+              rubyLight: '#fdecee',
+              slate: '#272f37'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #f7f4ec;
+      color: #272f37;
+      overflow-x: hidden;
+    }
+
+    .moving-banner-bar {
+      background: linear-gradient(90deg, #1a1612 0%, #3a2a12 50%, #1a1612 100%);
+      border-bottom: 2px solid #d4af37;
+      padding: 8px 0;
+      overflow: hidden;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .moving-track {
+      display: flex;
+      width: max-content;
+      animation: tickerMove 30s linear infinite;
+    }
+
+    .moving-track:hover { animation-play-state: paused; }
+
+    @keyframes tickerMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .moving-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 28px;
+      font-family: 'Cinzel', serif;
+      color: #fff4d4;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media print {
+      body * { visibility: hidden !important; }
+      #printContainer, #printContainer * { visibility: visible !important; }
+      #printContainer {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        display: block !important;
+      }
+      .no-print { display: none !important; }
+    }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f2ede0; }
+    ::-webkit-scrollbar-thumb { background: #d7c5a0; border-radius: 999px; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- TOP MOVING TICKER -->
+  <div class="moving-banner-bar">
+    <div class="moving-track">
+      <div class="moving-item">✦ FARIDI STONES AJMER</div>
+      <div class="moving-item">✦ PROPRIETOR: HAJI JAWED FARIDI</div>
+      <div class="moving-item">✦ NATURAL CERTIFIED GEMSTONES</div>
+      <div class="moving-item">✦ HELPLINE: +91 9352937928</div>
+      <div class="moving-item">✦ FARIDI STONES AJMER</div>
+      <div class="moving-item">✦ PROPRIETOR: HAJI JAWED FARIDI</div>
+      <div class="moving-item">✦ NATURAL CERTIFIED GEMSTONES</div>
+      <div class="moving-item">✦ HELPLINE: +91 9352937928</div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-[38px] z-40 bg-white/95 backdrop-blur-md border-b border-[#e5dcce] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 py-3">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 p-2 rounded-2xl bg-[#faedd2] border border-[#d4af37] flex items-center justify-center text-[#8f681a] shadow-sm">
+            <i class="ph-fill ph-sketch-logo text-3xl"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-xl font-black tracking-wider text-[#1e2329] font-serif uppercase">
+                FARIDI STONES
+              </h1>
+              <span class="text-[10px] bg-[#faedd2] text-[#8f681a] border border-[#d4af37]/60 px-2 py-0.5 rounded-full font-bold">
+                AJMER SHARIF
+              </span>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-[#556778] mt-0.5">
+              <span class="font-bold text-[#8f681a]">Proprietor: Haji Jawed Faridi</span>
+              <span>•</span>
+              <a href="tel:9352937928" class="font-bold text-[#11634b]">+91 9352937928</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="handleUniversalBack()" class="px-3.5 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#d4af37]/80 text-[#8f681a] text-xs font-bold transition-all">
+            <i class="ph-bold ph-arrow-left"></i> Reset
+          </button>
+          <button onclick="openSyncModal()" class="px-3 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#c59a3f] text-[#8f681a] text-xs font-bold transition-all flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#11634b]" id="statusLight"></span>
+            <span id="syncStatusLabel">Sheet Sync</span>
+          </button>
+          <button onclick="openAddCustomerModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white text-xs font-bold shadow-md hover:brightness-105 transition-all">
+            + New Customer
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-5 space-y-5">
+
+    <!-- KPI STATS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
+        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Customer Base</span>
+        <span class="text-2xl font-bold font-serif text-[#1e2329]" id="kpiTotalCustomers">0</span>
+      </div>
+      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
+        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Ledger Turnout</span>
+        <span class="text-2xl font-bold font-serif text-[#8f681a]" id="kpiTotalRevenue">₹0</span>
+      </div>
+      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
+        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Parcels Dispatched</span>
+        <span class="text-2xl font-bold font-serif text-[#1e3d59]" id="kpiPostalCount">0</span>
+      </div>
+      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
+        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Certified Stones</span>
+        <span class="text-2xl font-bold font-serif text-[#11634b]" id="kpiCertCount">0</span>
+      </div>
+    </div>
+
+    <!-- ADVANCED FILTER BAR WITH 100-ID BATCH SELECTOR -->
+    <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
+      <div class="relative flex-1 w-full">
+        <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9fa9b3]"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          oninput="onSearchInput()" 
+          placeholder="Search Customer, Mobile, Cust ID, Stone, or City..." 
+          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-medium outline-none focus:border-[#c59a3f]"
+        >
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+        <!-- 100-CUSTOMER BATCH DROPDOWN -->
+        <select id="idBatchFilter" onchange="onBatchFilterChange()" class="px-3 py-2.5 rounded-xl bg-[#faedd2] border-2 border-[#d4af37] text-xs font-bold text-[#8f681a] outline-none cursor-pointer">
+          <option value="all">📂 All Customer Batches</option>
+        </select>
+
+        <select id="stoneFilter" onchange="applyFilterAndRender()" class="px-3 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-semibold outline-none cursor-pointer">
+          <option value="">All Gemstones</option>
+        </select>
+        <select id="dispatchFilter" onchange="applyFilterAndRender()" class="px-3 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-semibold outline-none cursor-pointer">
+          <option value="">All Channels</option>
+          <option value="sell">Counter Sale</option>
+          <option value="post">Postal</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- COUNT & PAGINATION BAR -->
+    <div class="flex items-center justify-between px-1">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-[#796c56]" id="cardsCountLabel">Showing 0 dossiers</span>
+        <span id="activeBatchPill" class="hidden text-[10px] bg-[#faedd2] text-[#8f681a] border border-[#d4af37] px-2 py-0.5 rounded font-bold"></span>
+      </div>
+      
+      <div class="flex items-center gap-2" id="paginationControls">
+        <button onclick="prevPage()" id="btnPrevPage" class="px-3 py-1 bg-white border border-[#dccfb4] rounded-lg text-xs font-bold text-[#8f681a] disabled:opacity-40">
+          ← Prev
+        </button>
+        <span class="text-xs font-bold text-[#1e2329]" id="pageIndicator">Page 1 of 1</span>
+        <button onclick="nextPage()" id="btnNextPage" class="px-3 py-1 bg-white border border-[#dccfb4] rounded-lg text-xs font-bold text-[#8f681a] disabled:opacity-40">
+          Next →
+        </button>
+      </div>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div id="cardsGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+
+    <div id="emptyResultsState" class="hidden py-12 text-center bg-white rounded-2xl border border-[#e5dcce]">
+      <p class="text-sm font-bold text-[#1e2329]">No customer records found</p>
+      <button onclick="clearSearchField()" class="mt-3 px-4 py-1.5 rounded-xl bg-[#faedd2] text-[#8f681a] text-xs font-bold">Reset Filters</button>
+    </div>
+
+  </main>
+
+  <!-- URL SYNC MODAL -->
+  <div id="syncModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-xl p-6 space-y-4">
+      <div class="flex justify-between items-center pb-2 border-b">
+        <h3 class="text-base font-bold font-serif text-[#1e2329]">Connect Google Sheet URL</h3>
+        <button onclick="toggleModal('syncModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
+      </div>
+      <p class="text-xs text-[#556778]">Paste your Google Apps Script Web App URL below:</p>
+      <div class="flex gap-2">
+        <input type="url" id="webhookInput" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 px-3 py-2 rounded-xl border text-xs font-mono outline-none">
+        <button onclick="saveWebhookUrl()" class="px-4 py-2 bg-[#c59a3f] text-white rounded-xl text-xs font-bold">Connect</button>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button onclick="toggleModal('syncModal')" class="px-4 py-1.5 bg-[#f2ede0] text-xs font-bold rounded-xl">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT CUSTOMER MODAL (AUTO-FILL & DUPLICATE ALERT) -->
+  <div id="customerModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 shadow-2xl p-6">
+      <div class="flex justify-between items-center pb-3 border-b mb-3">
+        <div>
+          <h3 class="text-base font-bold font-serif text-[#1e2329]" id="modalFormTitle">Customer Entry</h3>
+          <p class="text-[11px] text-[#796c56]">Proprietor: Haji Jawed Faridi • Faridi Stones</p>
+        </div>
+        <button onclick="toggleModal('customerModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
+      </div>
+
+      <!-- DUPLICATE CUSTOMER ALERT BANNER -->
+      <div id="customerFoundAlert" class="hidden p-2.5 mb-3 bg-[#e4f4ee] border border-[#11634b]/40 rounded-xl text-xs text-[#11634b] flex items-center justify-between">
+        <div class="flex items-center gap-1.5 font-bold">
+          <i class="ph-fill ph-check-circle text-base"></i>
+          <span id="customerFoundText">Existing Customer Detected! Details auto-filled.</span>
+        </div>
+        <span class="text-[10px] bg-white px-2 py-0.5 rounded font-mono font-bold text-[#8f681a]" id="prevPurchasesBadge"></span>
+      </div>
+
+      <form id="customerForm" onsubmit="handleFormSubmit(event)" class="space-y-3 text-xs">
+        <input type="hidden" id="formMode" value="add">
+        <input type="hidden" id="originalCustId" value="">
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Cust ID (Manual) *</label>
+            <input type="text" id="inpCustId" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border border-[#c59a3f] font-mono font-bold text-[#8f681a] outline-none">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Mobile No *</label>
+            <input type="tel" id="inpMobile" oninput="checkExistingCustomer()" required placeholder="10-digit mobile" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none font-mono">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Customer Name *</label>
+            <input type="text" id="inpName" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Mother Name</label>
+            <input type="text" id="inpMotherName" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Date of Birth / Age</label>
+            <input type="text" id="inpDob" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Stone Name *</label>
+            <input type="text" id="inpStoneName" required placeholder="Ruby, Pukhraj, etc." class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Weight</label>
+            <input type="text" id="inpStoneWeight" placeholder="e.g. 4.25 crt" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none font-mono">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Certificate</label>
+            <input type="text" id="inpCertNo" placeholder="ipgt/..." class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none font-mono">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Amount (₹) *</label>
+            <input type="number" id="inpAmount" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border font-bold text-[#8f681a] outline-none">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Channel</label>
+            <select id="inpSellPost" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
+              <option value="sell">Counter Sell</option>
+              <option value="post">Postal</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Payment</label>
+            <select id="inpPayment" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
+              <option value="cash">Cash</option>
+              <option value="online">Online</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">City</label>
+            <input type="text" id="inpCity" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
+          </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">State</label>
+            <input type="text" id="inpState" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-[#424d57] mb-1">Comments / Family Notes</label>
+          <input type="text" id="inpComments" placeholder="e.g. id no 1700 ke sath, ring with chandi" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
+        </div>
+
+        <div class="pt-3 border-t flex justify-end gap-2">
+          <button type="button" onclick="toggleModal('customerModal')" class="px-4 py-2 border rounded-xl font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2 bg-[#c59a3f] text-white rounded-xl font-bold">Save Record</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- DIGITAL DOSSIER MODAL WITH FULL PURCHASE HISTORY & FAMILY LINKING -->
+  <div id="digitalCardModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 p-6 space-y-4">
+      <div class="flex justify-between items-start pb-2 border-b">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-mono font-bold bg-[#faedd2] text-[#8f681a] px-2 py-0.5 rounded border border-[#d4af37]" id="dossierCustId">-</span>
+            <span class="text-[10px] uppercase font-bold bg-[#e4f4ee] text-[#11634b] px-2 py-0.5 rounded-full" id="dossierChannelBadge">Store</span>
+          </div>
+          <h3 class="text-xl font-black font-serif text-[#1e2329] capitalize mt-1" id="dossierName">-</h3>
+          <p class="text-xs text-[#556778] font-mono mt-0.5">📞 <span id="dossierMobile">-</span> • <span id="dossierLocation">-</span></p>
+        </div>
+        <button onclick="toggleModal('digitalCardModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
+      </div>
+
+      <!-- MAIN STONE DETAILS -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs bg-[#faf8f4] p-3 rounded-2xl border">
+        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Gemstone</span><b class="text-[#8f681a] uppercase text-sm" id="dossierStoneName">-</b></div>
+        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Weight</span><b id="dossierStoneWeight">-</b></div>
+        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Billed</span><b class="text-[#11634b] text-sm" id="dossierAmount">-</b></div>
+        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Mother Name</span><b id="dossierMotherName" class="capitalize">-</b></div>
+      </div>
+
+      <!-- FAMILY / GROUP LINKING DISPLAY -->
+      <div id="familyLinkingSection" class="hidden p-3 bg-[#fdfaf3] border border-[#ebd7b5] rounded-xl text-xs space-y-1">
+        <div class="flex items-center gap-1.5 text-[#8f681a] font-bold">
+          <i class="ph-fill ph-users-three text-sm"></i>
+          <span>Linked Family / Group Members:</span>
+        </div>
+        <div id="familyMembersList" class="flex flex-wrap gap-2 pt-1"></div>
+      </div>
+
+      <!-- COMPLETE PAST PURCHASE HISTORY OF THIS CUSTOMER -->
+      <div class="border-t pt-3">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-[#796c56] flex items-center gap-1">
+            <i class="ph-bold ph-clock-counter-clockwise"></i> Customer Purchase History
+          </span>
+          <span class="text-[11px] font-mono text-[#8f681a] font-bold" id="totalCustomerSpend">-</span>
+        </div>
+        <div id="purchaseHistoryContainer" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
+      </div>
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex flex-wrap gap-2 pt-2 border-t">
+        <button onclick="triggerNewPurchaseFromDossier()" class="flex-1 py-2 bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1">
+          <i class="ph-bold ph-plus-circle"></i> + Add New Purchase
+        </button>
+        <button onclick="sendActiveDossierWhatsApp()" class="py-2 px-4 bg-[#11634b] text-white rounded-xl text-xs font-bold flex items-center gap-1">
+          <i class="ph-bold ph-whatsapp-logo"></i> WhatsApp
+        </button>
+        <button onclick="openSlipFromDossier()" class="py-2 px-4 bg-[#faf7ef] border border-[#dccfb4] text-[#8f681a] rounded-xl text-xs font-bold flex items-center gap-1">
+          <i class="ph-bold ph-printer"></i> Print Slip
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIP MODAL -->
+  <div id="slipModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-lg p-6">
+      <div class="flex justify-between items-center pb-3 border-b no-print">
+        <h3 class="text-sm font-bold font-serif">Faridi Stones Verified Slip</h3>
+        <div class="flex gap-2">
+          <button onclick="window.print()" class="px-3 py-1 bg-[#c59a3f] text-white text-xs font-bold rounded-lg">Print</button>
+          <button onclick="toggleModal('slipModal')" class="text-base"><i class="ph-bold ph-x"></i></button>
+        </div>
+      </div>
+
+      <div id="printContainer" class="p-4 bg-white text-[#1e2329]">
+        <div class="text-center border-b pb-2 mb-3">
+          <h2 class="text-xl font-bold font-serif">FARIDI STONES</h2>
+          <p class="text-[10px] text-[#796c56]">Prop: Haji Jawed Faridi • Near Panjatan Guest House, Ajmer</p>
+          <p class="text-[10px] font-mono">Helpline: +91 9352937928</p>
+        </div>
+        <div class="space-y-1 text-xs">
+          <div><b>ID:</b> <span id="slipId">-</span></div>
+          <div><b>Customer:</b> <span id="slipName">-</span></div>
+          <div><b>Gemstone:</b> <span id="slipStone">-</span> (<span id="slipWeight">-</span>)</div>
+          <div><b>Amount:</b> ₹<span id="slipAmount">-</span></div>
+          <div><b>City:</b> <span id="slipCity">-</span></div>
+          <div><b>Remarks:</b> <span id="slipRemarks">-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed bottom-6 right-6 bg-[#1e2329] text-white text-xs px-4 py-2.5 rounded-xl shadow-xl z-50 transform translate-y-20 opacity-0 transition-all">
+    <span id="toastText">-</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let activeWebhookUrl = localStorage.getItem("faridi_custom_webhook_url") || "";
+    let records = [];
+    let filteredRecords = [];
+    let currentDossierRecord = null;
+    let activeSlipRecord = null;
+    
+    const ITEMS_PER_PAGE = 24;
+    let currentPage = 1;
+    let searchTimer = null;
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadCachedData();
+      generate100IdBatchOptions();
+      populateStoneDropdown();
+      updateKpis();
+      applyFilterAndRender();
+
+      const inp = document.getElementById("webhookInput");
+      if (inp) inp.value = activeWebhookUrl;
+
+      if (activeWebhookUrl) syncFromGoogleSheet();
+    });
+
+    function loadCachedData() {
+      const stored = localStorage.getItem("faridi_royal_records_v3");
+      if (stored) {
+        try { records = JSON.parse(stored); } catch (e) { records = []; }
+      }
+    }
+
+    function saveData() {
+      localStorage.setItem("faridi_royal_records_v3", JSON.stringify(records));
+    }
+
+    // 1. GENERATE DYNAMIC 100-ID BATCHES (e.g. 1701-1800, 1801-1900, etc.)
+    function generate100IdBatchOptions() {
+      const sel = document.getElementById("idBatchFilter");
+      sel.innerHTML = '<option value="all">📂 All Customer Batches</option>';
+
+      // Extract valid numerical Cust IDs
+      const numericIds = records.map(r => parseInt(r.custId)).filter(n => !isNaN(n) && n > 0);
+      if (!numericIds.length) return;
+
+      const minId = Math.min(...numericIds);
+      const maxId = Math.max(...numericIds);
+
+      // Determine 100-step boundaries
+      const startFloor = Math.floor(minId / 100) * 100 + 1;
+      const endCeil = Math.ceil(maxId / 100) * 100;
+
+      // Create buckets in descending order (newest batches first)
+      for (let b = endCeil; b >= startFloor; b -= 100) {
+        const batchStart = b - 99;
+        const batchEnd = b;
+        
+        // Count how many customers exist in this batch
+        const countInBatch = records.filter(r => {
+          const id = parseInt(r.custId);
+          return !isNaN(id) && id >= batchStart && id <= batchEnd;
+        }).length;
+
+        if (countInBatch > 0) {
+          const opt = document.createElement("option");
+          opt.value = `${batchStart}-${batchEnd}`;
+          opt.innerText = `📦 ID: ${batchStart} se ${batchEnd} (${countInBatch} CST)`;
+          sel.appendChild(opt);
+        }
+      }
+    }
+
+    function onBatchFilterChange() {
+      currentPage = 1;
+      applyFilterAndRender();
+    }
+
+    function onSearchInput() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        currentPage = 1;
+        applyFilterAndRender();
+      }, 180);
+    }
+
+    function applyFilterAndRender() {
+      const q = document.getElementById("searchInput").value.toLowerCase().trim();
+      const stone = document.getElementById("stoneFilter").value.toLowerCase().trim();
+      const dispatch = document.getElementById("dispatchFilter").value.toLowerCase().trim();
+      const batchVal = document.getElementById("idBatchFilter").value;
+
+      const batchPill = document.getElementById("activeBatchPill");
+      if (batchVal !== "all") {
+        batchPill.innerText = `Batch: ${batchVal}`;
+        batchPill.classList.remove("hidden");
+      } else {
+        batchPill.classList.add("hidden");
+      }
+
+      filteredRecords = records.filter(c => {
+        // Text Match
+        const matchQ = !q || 
+          String(c.name || '').toLowerCase().includes(q) ||
+          String(c.mobile || '').includes(q) ||
+          String(c.custId || '').includes(q) ||
+          String(c.city || '').toLowerCase().includes(q) ||
+          String(c.stoneName || '').toLowerCase().includes(q);
+
+        // Stone & Dispatch Match
+        const matchStone = !stone || String(c.stoneName || '').toLowerCase().includes(stone);
+        const matchDispatch = !dispatch || String(c.sellPost || '').toLowerCase() === dispatch;
+
+        // 100-ID Batch Match
+        let matchBatch = true;
+        if (batchVal !== "all") {
+          const parts = batchVal.split("-");
+          const bStart = parseInt(parts[0]);
+          const bEnd = parseInt(parts[1]);
+          const numId = parseInt(c.custId);
+          matchBatch = !isNaN(numId) && numId >= bStart && numId <= bEnd;
+        }
+
+        return matchQ && matchStone && matchDispatch && matchBatch;
+      });
+
+      renderPaginatedCards();
+    }
+
+    function renderPaginatedCards() {
+      const total = filteredRecords.length;
+      const totalPages = Math.ceil(total / ITEMS_PER_PAGE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+
+      document.getElementById("cardsCountLabel").innerText = `Showing ${total} dossiers`;
+      document.getElementById("pageIndicator").innerText = `Page ${currentPage} of ${totalPages}`;
+      document.getElementById("btnPrevPage").disabled = currentPage === 1;
+      document.getElementById("btnNextPage").disabled = currentPage === totalPages;
+
+      const container = document.getElementById("cardsGridContainer");
+      const empty = document.getElementById("emptyResultsState");
+
+      if (total === 0) {
+        container.innerHTML = "";
+        empty.classList.remove("hidden");
+        return;
+      }
+      empty.classList.add("hidden");
+
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const end = start + ITEMS_PER_PAGE;
+      const pageData = filteredRecords.slice(start, end);
+
+      container.innerHTML = pageData.map(c => {
+        // Check if customer has multiple purchases
+        const count = records.filter(r => (r.mobile && r.mobile === c.mobile) || (r.name && r.name.toLowerCase() === c.name.toLowerCase())).length;
+        const hasHistory = count > 1;
+
+        return `
+          <div onclick="openDigitalCard('${c.custId}')" class="bg-white rounded-2xl border border-[#e5dcce] p-4 shadow-sm hover:border-[#c59a3f] cursor-pointer transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <div class="flex items-center gap-1.5">
+                  <span class="font-mono text-xs font-bold bg-[#faedd2] text-[#8f681a] px-2 py-0.5 rounded-lg border border-[#d4af37]/50">#${c.custId}</span>
+                  ${hasHistory ? `<span class="text-[9px] bg-[#e4edf5] text-[#1e3d59] font-bold px-1.5 py-0.5 rounded">${count} Orders</span>` : ''}
+                </div>
+                <span class="font-serif font-bold text-sm text-[#8f681a]">₹${(parseInt(c.amount) || 0).toLocaleString('en-IN')}</span>
+              </div>
+              <h3 class="font-serif font-bold text-base text-[#1e2329] capitalize">${c.name}</h3>
+              <p class="text-xs text-[#5f6974] font-mono mt-0.5">📞 ${c.mobile} • ${c.city || 'Ajmer'}</p>
+              <div class="mt-2.5 p-2 rounded-xl bg-[#faf8f4] border text-xs flex justify-between">
+                <span class="font-bold text-[#1e2329] uppercase">💎 ${c.stoneName}</span>
+                <span class="text-[#6e7b87]">${c.stoneWeight || '-'}</span>
+              </div>
+            </div>
+            <div class="mt-3 pt-2 border-t flex justify-between items-center text-xs text-[#8a96a3]">
+              <span>${c.sellDate || '-'}</span>
+              <div class="flex gap-1" onclick="event.stopPropagation()">
+                <button onclick="sendCustomerWhatsApp('${c.custId}')" class="p-1 rounded bg-[#e4f4ee] text-[#11634b]" title="WhatsApp"><i class="ph-bold ph-whatsapp-logo text-sm"></i></button>
+                <button onclick="openSlipModal('${c.custId}')" class="p-1 rounded bg-[#faf6ee] text-[#8f681a]" title="Print Slip"><i class="ph-bold ph-printer text-sm"></i></button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 2. OPEN DIGITAL DOSSIER WITH COMPLETE PURCHASE HISTORY & FAMILY DETECTOR
+    function openDigitalCard(id) {
+      const c = records.find(r => String(r.custId) === String(id));
+      if (!c) return;
+      currentDossierRecord = c;
+
+      document.getElementById("dossierName").innerText = c.name;
+      document.getElementById("dossierCustId").innerText = `#${c.custId}`;
+      document.getElementById("dossierMobile").innerText = c.mobile;
+      document.getElementById("dossierMotherName").innerText = c.motherName || 'Not recorded';
+      document.getElementById("dossierStoneName").innerText = c.stoneName;
+      document.getElementById("dossierStoneWeight").innerText = c.stoneWeight || '-';
+      document.getElementById("dossierAmount").innerText = `₹${(parseInt(c.amount) || 0).toLocaleString('en-IN')}`;
+      document.getElementById("dossierLocation").innerText = `${c.city || '-'}, ${c.state || ''}`;
+
+      const isPost = (c.sellPost || '').toLowerCase() === 'post';
+      document.getElementById("dossierChannelBadge").innerText = isPost ? 'Postal Dispatch' : 'Counter Sale';
+
+      // Load purchase history of this customer
+      const history = records.filter(r => 
+        (c.mobile && r.mobile === c.mobile) || 
+        (c.name && r.name && r.name.toLowerCase() === c.name.toLowerCase())
+      );
+
+      const histContainer = document.getElementById("purchaseHistoryContainer");
+      const totalSpendEl = document.getElementById("totalCustomerSpend");
+      const totalSpend = history.reduce((acc, curr) => acc + (parseInt(curr.amount) || 0), 0);
+      totalSpendEl.innerText = `Total Lifetime: ₹${totalSpend.toLocaleString('en-IN')} (${history.length} purchases)`;
+
+      histContainer.innerHTML = history.map(h => `
+        <div class="flex items-center justify-between p-2 rounded-xl border text-xs ${h.custId === c.custId ? 'bg-[#faedd2] border-[#c59a3f]' : 'bg-[#faf8f4] border-[#e5dcce]'}">
+          <div>
+            <span class="font-mono font-bold text-[#8f681a]">#${h.custId}</span>
+            <span class="font-bold text-[#1e2329] uppercase ml-1">${h.stoneName}</span>
+            <span class="text-[#6e7b87]">(${h.stoneWeight || '-'})</span>
+            <span class="text-[10px] text-[#8a96a3] block font-mono">Date: ${h.sellDate || '-'}</span>
+          </div>
+          <div class="text-right">
+            <span class="font-bold font-mono text-[#11634b]">₹${h.amount}</span>
+            <span class="text-[10px] text-[#8a96a3] block uppercase">${h.sellPost || 'sell'}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Check Family/Group Linking from comments (e.g. "id no 1700 ke sath")
+      const famSection = document.getElementById("familyLinkingSection");
+      const famList = document.getElementById("familyMembersList");
+      const matchFam = (c.comments || '').match(/\d{4}/g);
+
+      if (matchFam && matchFam.length) {
+        famSection.classList.remove("hidden");
+        famList.innerHTML = matchFam.map(linkedId => {
+          const linkedC = records.find(r => String(r.custId) === String(linkedId));
+          const name = linkedC ? linkedC.name : `ID #${linkedId}`;
+          return `
+            <button onclick="openDigitalCard('${linkedId}')" class="px-2.5 py-1 rounded-lg bg-[#faedd2] border border-[#d4af37] text-[#8f681a] font-bold text-xs flex items-center gap-1 hover:brightness-95">
+              <span>👤 #${linkedId} (${name})</span>
+            </button>
+          `;
+        }).join('');
+      } else {
+        famSection.classList.add("hidden");
+      }
+
+      toggleModal('digitalCardModal');
+    }
+
+    // 3. AUTO-FILL ON EXISTING CUSTOMER MOBILE INPUT
+    function checkExistingCustomer() {
+      const mob = document.getElementById("inpMobile").value.trim();
+      const alertBox = document.getElementById("customerFoundAlert");
+      if (mob.length < 5) {
+        alertBox.classList.add("hidden");
+        return;
+      }
+
+      const match = records.find(r => r.mobile && r.mobile.includes(mob));
+      if (match && document.getElementById("formMode").value === "add") {
+        document.getElementById("inpName").value = match.name || '';
+        document.getElementById("inpMotherName").value = match.motherName || '';
+        document.getElementById("inpDob").value = match.dob || '';
+        document.getElementById("inpCity").value = match.city || '';
+        document.getElementById("inpState").value = match.state || '';
+
+        const totalTimes = records.filter(r => r.mobile === match.mobile).length;
+        document.getElementById("prevPurchasesBadge").innerText = `${totalTimes} Previous Purchases`;
+        alertBox.classList.remove("hidden");
+      } else {
+        alertBox.classList.add("hidden");
+      }
+    }
+
+    // 4. ONE-CLICK RE-ORDER FROM ACTIVE DOSSIER
+    function triggerNewPurchaseFromDossier() {
+      if (!currentDossierRecord) return;
+      const c = currentDossierRecord;
+      toggleModal('digitalCardModal');
+
+      openAddCustomerModal();
+      document.getElementById("inpMobile").value = c.mobile || '';
+      document.getElementById("inpName").value = c.name || '';
+      document.getElementById("inpMotherName").value = c.motherName || '';
+      document.getElementById("inpDob").value = c.dob || '';
+      document.getElementById("inpCity").value = c.city || '';
+      document.getElementById("inpState").value = c.state || '';
+      document.getElementById("inpComments").value = `Linked with Cust #${c.custId}`;
+      
+      showToast(`Auto-filled details for ${c.name}!`);
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPaginatedCards();
+        window.scrollTo({ top: 200, behavior: 'smooth' });
+      }
+    }
+
+    function nextPage() {
+      const totalPages = Math.ceil(filteredRecords.length / ITEMS_PER_PAGE);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPaginatedCards();
+        window.scrollTo({ top: 200, behavior: 'smooth' });
+      }
+    }
+
+    function handleUniversalBack() {
+      ['digitalCardModal', 'customerModal', 'slipModal', 'syncModal'].forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+      });
+      document.getElementById("searchInput").value = "";
+      document.getElementById("stoneFilter").value = "";
+      document.getElementById("dispatchFilter").value = "";
+      document.getElementById("idBatchFilter").value = "all";
+      currentPage = 1;
+      applyFilterAndRender();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      showToast("Returned to Dashboard");
+    }
+
+    function openSyncModal() {
+      document.getElementById("webhookInput").value = activeWebhookUrl;
+      toggleModal('syncModal');
+    }
+
+    function saveWebhookUrl() {
+      const val = document.getElementById("webhookInput").value.trim();
+      activeWebhookUrl = val;
+      localStorage.setItem("faridi_custom_webhook_url", val);
+      toggleModal('syncModal');
+      showToast("URL Saved!");
+      if (val) syncFromGoogleSheet();
+    }
+
+    async function syncFromGoogleSheet() {
+      if (!activeWebhookUrl) return;
+      const label = document.getElementById("syncStatusLabel");
+      const light = document.getElementById("statusLight");
+
+      label.innerText = "Syncing...";
+      light.className = "w-2.5 h-2.5 rounded-full bg-[#dfb15b] animate-ping";
+
+      try {
+        const res = await fetch(activeWebhookUrl);
+        const json = await res.json();
+        if (json.status === "success" && Array.isArray(json.data)) {
+          records = json.data;
+          saveData();
+          generate100IdBatchOptions();
+          populateStoneDropdown();
+          updateKpis();
+          applyFilterAndRender();
+
+          label.innerText = "Synced";
+          light.className = "w-2.5 h-2.5 rounded-full bg-[#11634b]";
+          showToast(`Synced ${records.length} records!`);
+        }
+      } catch (e) {
+        label.innerText = "Offline";
+        light.className = "w-2.5 h-2.5 rounded-full bg-[#9b1b30]";
+      }
+    }
+
+    function updateKpis() {
+      document.getElementById("kpiTotalCustomers").innerText = records.length;
+      const rev = records.reduce((acc, c) => acc + (parseInt(c.amount) || 0), 0);
+      document.getElementById("kpiTotalRevenue").innerText = "₹" + rev.toLocaleString('en-IN');
+      document.getElementById("kpiPostalCount").innerText = records.filter(r => (r.sellPost || '').toLowerCase() === 'post').length;
+      document.getElementById("kpiCertCount").innerText = records.filter(r => r.certificateNo && r.certificateNo !== '-').length;
+    }
+
+    function populateStoneDropdown() {
+      const sel = document.getElementById("stoneFilter");
+      const stones = new Set();
+      records.forEach(r => { if (r.stoneName) stones.add(r.stoneName.toLowerCase().trim()); });
+      sel.innerHTML = '<option value="">All Gemstones</option>';
+      Array.from(stones).sort().forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s;
+        opt.innerText = s.toUpperCase();
+        sel.appendChild(opt);
+      });
+    }
+
+    function openAddCustomerModal() {
+      document.getElementById("customerForm").reset();
+      document.getElementById("formMode").value = "add";
+      document.getElementById("customerFoundAlert").classList.add("hidden");
+      
+      const ids = records.map(r => parseInt(r.custId)).filter(n => !isNaN(n));
+      document.getElementById("inpCustId").value = (ids.length ? Math.max(...ids) : 1700) + 1;
+      toggleModal('customerModal');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const payload = {
+        custId: document.getElementById("inpCustId").value.trim(),
+        name: document.getElementById("inpName").value.trim().toLowerCase(),
+        mobile: document.getElementById("inpMobile").value.trim(),
+        motherName: document.getElementById("inpMotherName").value.trim().toLowerCase(),
+        dob: document.getElementById("inpDob").value.trim(),
+        stoneName: document.getElementById("inpStoneName").value.trim().toLowerCase(),
+        stoneWeight: document.getElementById("inpStoneWeight").value.trim(),
+        certificateNo: document.getElementById("inpCertNo").value.trim() || "-",
+        amount: parseInt(document.getElementById("inpAmount").value) || 0,
+        sellPost: document.getElementById("inpSellPost").value,
+        payment: document.getElementById("inpPayment").value,
+        reference: "Haji Jawed Faridi",
+        sellDate: new Date().toLocaleDateString('en-GB'),
+        city: document.getElementById("inpCity").value.trim().toLowerCase(),
+        state: document.getElementById("inpState").value.trim().toLowerCase(),
+        comments: document.getElementById("inpComments").value.trim()
+      };
+
+      records.unshift(payload);
+      saveData();
+      generate100IdBatchOptions();
+      updateKpis();
+      applyFilterAndRender();
+      toggleModal('customerModal');
+      showToast(`Saved Cust ID #${payload.custId}`);
+
+      if (activeWebhookUrl) {
+        fetch(activeWebhookUrl, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }).catch(err => console.warn(err));
+      }
+    }
+
+    function openSlipModal(id) {
+      const c = records.find(r => String(r.custId) === String(id));
+      if (!c) return;
+      activeSlipRecord = c;
+
+      document.getElementById("slipId").innerText = `#${c.custId}`;
+      document.getElementById("slipName").innerText = c.name;
+      document.getElementById("slipStone").innerText = c.stoneName;
+      document.getElementById("slipWeight").innerText = c.stoneWeight || '-';
+      document.getElementById("slipAmount").innerText = c.amount;
+      document.getElementById("slipCity").innerText = c.city || '-';
+      document.getElementById("slipRemarks").innerText = c.comments || '-';
+
+      toggleModal('slipModal');
+    }
+
+    function sendCustomerWhatsApp(id) {
+      const c = records.find(r => String(r.custId) === String(id));
+      if (!c) return;
+      let ph = (c.mobile || '').replace(/\D/g, '');
+      if (ph.length === 10) ph = '91' + ph;
+
+      const msg = `*FARIDI STONES AJMER*\nProp: Haji Jawed Faridi\nSalam ${c.name.toUpperCase()} ji,\nCust ID: #${c.custId}\nGemstone: ${c.stoneName} (${c.stoneWeight})\nTotal: ₹${c.amount}\nHelpline: +91 9352937928`;
+      window.open(`https://wa.me/${ph}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function sendActiveDossierWhatsApp() {
+      if (currentDossierRecord) sendCustomerWhatsApp(currentDossierRecord.custId);
+    }
+
+    function openSlipFromDossier() {
+      if (currentDossierRecord) {
+        toggleModal('digitalCardModal');
+        openSlipModal(currentDossierRecord.custId);
+      }
+    }
+
+    function clearSearchField() {
+      document.getElementById("searchInput").value = "";
+      document.getElementById("stoneFilter").value = "";
+      document.getElementById("dispatchFilter").value = "";
+      document.getElementById("idBatchFilter").value = "all";
+      currentPage = 1;
+      applyFilterAndRender();
+    }
+
+    function toggleModal(id) {
+      document.getElementById(id).classList.toggle("hidden");
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      document.getElementById("toastText").innerText = msg;
+      t.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => t.classList.add("translate-y-20", "opacity-0"), 2500);
+    }
+  </script>
+</body>
+</html>
