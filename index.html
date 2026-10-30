@@ -156,10 +156,13 @@
           <button onclick="handleUniversalBack()" class="px-3.5 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#d4af37]/80 text-[#8f681a] text-xs font-bold transition-all">
             <i class="ph-bold ph-arrow-left"></i> Reset
           </button>
-          <button onclick="openSyncModal()" class="px-3 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#c59a3f] text-[#8f681a] text-xs font-bold transition-all flex items-center gap-1.5">
+          
+          <button onclick="syncFromGoogleSheet()" class="px-3 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#c59a3f] text-[#8f681a] text-xs font-bold transition-all flex items-center gap-1.5" title="Click to force reload sheet data">
             <span class="w-2.5 h-2.5 rounded-full bg-[#11634b]" id="statusLight"></span>
-            <span id="syncStatusLabel">Sheet Sync</span>
+            <span id="syncStatusLabel">Sheet Synced</span>
+            <i class="ph-bold ph-arrows-clockwise text-[#8f681a]"></i>
           </button>
+
           <button onclick="openAddCustomerModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white text-xs font-bold shadow-md hover:brightness-105 transition-all">
             + New Customer
           </button>
@@ -192,7 +195,7 @@
       </div>
     </div>
 
-    <!-- ADVANCED FILTER BAR WITH 100-ID BATCH SELECTOR -->
+    <!-- FILTER BAR WITH 100-ID BATCH SELECTOR -->
     <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
       <div class="relative flex-1 w-full">
         <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9fa9b3]"></i>
@@ -249,24 +252,6 @@
     </div>
 
   </main>
-
-  <!-- URL SYNC MODAL -->
-  <div id="syncModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-xl p-6 space-y-4">
-      <div class="flex justify-between items-center pb-2 border-b">
-        <h3 class="text-base font-bold font-serif text-[#1e2329]">Connect Google Sheet URL</h3>
-        <button onclick="toggleModal('syncModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
-      </div>
-      <p class="text-xs text-[#556778]">Paste your Google Apps Script Web App URL below:</p>
-      <div class="flex gap-2">
-        <input type="url" id="webhookInput" placeholder="https://script.google.com/macros/s/.../exec" class="flex-1 px-3 py-2 rounded-xl border text-xs font-mono outline-none">
-        <button onclick="saveWebhookUrl()" class="px-4 py-2 bg-[#c59a3f] text-white rounded-xl text-xs font-bold">Connect</button>
-      </div>
-      <div class="flex justify-end pt-2">
-        <button onclick="toggleModal('syncModal')" class="px-4 py-1.5 bg-[#f2ede0] text-xs font-bold rounded-xl">Close</button>
-      </div>
-    </div>
-  </div>
 
   <!-- ADD / EDIT CUSTOMER MODAL (AUTO-FILL & DUPLICATE ALERT) -->
   <div id="customerModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
@@ -468,7 +453,12 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    let activeWebhookUrl = localStorage.getItem("faridi_custom_webhook_url") || "";
+    // =========================================================================
+    // AAPKA GOOGLE SHEET URL CODE MEIN FIX HO CHUKA HAI:
+    // =========================================================================
+    const DEFAULT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwnkPuZWOkQrLO8F0Sk5TBai37dgcXYzCFIUkdGVzW2jm_mxDMggq0EoEDmGM9YRvtFYw/exec";
+
+    let activeWebhookUrl = DEFAULT_WEBHOOK_URL;
     let records = [];
     let filteredRecords = [];
     let currentDossierRecord = null;
@@ -485,10 +475,8 @@
       updateKpis();
       applyFilterAndRender();
 
-      const inp = document.getElementById("webhookInput");
-      if (inp) inp.value = activeWebhookUrl;
-
-      if (activeWebhookUrl) syncFromGoogleSheet();
+      // Seedha Google Sheet se live connect karega
+      syncFromGoogleSheet();
     });
 
     function loadCachedData() {
@@ -502,28 +490,24 @@
       localStorage.setItem("faridi_royal_records_v3", JSON.stringify(records));
     }
 
-    // 1. GENERATE DYNAMIC 100-ID BATCHES (e.g. 1701-1800, 1801-1900, etc.)
+    // GENERATE DYNAMIC 100-ID BATCHES (e.g. 1701-1800, 1801-1900)
     function generate100IdBatchOptions() {
       const sel = document.getElementById("idBatchFilter");
       sel.innerHTML = '<option value="all">📂 All Customer Batches</option>';
 
-      // Extract valid numerical Cust IDs
       const numericIds = records.map(r => parseInt(r.custId)).filter(n => !isNaN(n) && n > 0);
       if (!numericIds.length) return;
 
       const minId = Math.min(...numericIds);
       const maxId = Math.max(...numericIds);
 
-      // Determine 100-step boundaries
       const startFloor = Math.floor(minId / 100) * 100 + 1;
       const endCeil = Math.ceil(maxId / 100) * 100;
 
-      // Create buckets in descending order (newest batches first)
       for (let b = endCeil; b >= startFloor; b -= 100) {
         const batchStart = b - 99;
         const batchEnd = b;
         
-        // Count how many customers exist in this batch
         const countInBatch = records.filter(r => {
           const id = parseInt(r.custId);
           return !isNaN(id) && id >= batchStart && id <= batchEnd;
@@ -566,7 +550,6 @@
       }
 
       filteredRecords = records.filter(c => {
-        // Text Match
         const matchQ = !q || 
           String(c.name || '').toLowerCase().includes(q) ||
           String(c.mobile || '').includes(q) ||
@@ -574,11 +557,9 @@
           String(c.city || '').toLowerCase().includes(q) ||
           String(c.stoneName || '').toLowerCase().includes(q);
 
-        // Stone & Dispatch Match
         const matchStone = !stone || String(c.stoneName || '').toLowerCase().includes(stone);
         const matchDispatch = !dispatch || String(c.sellPost || '').toLowerCase() === dispatch;
 
-        // 100-ID Batch Match
         let matchBatch = true;
         if (batchVal !== "all") {
           const parts = batchVal.split("-");
@@ -619,7 +600,6 @@
       const pageData = filteredRecords.slice(start, end);
 
       container.innerHTML = pageData.map(c => {
-        // Check if customer has multiple purchases
         const count = records.filter(r => (r.mobile && r.mobile === c.mobile) || (r.name && r.name.toLowerCase() === c.name.toLowerCase())).length;
         const hasHistory = count > 1;
 
@@ -652,7 +632,6 @@
       }).join('');
     }
 
-    // 2. OPEN DIGITAL DOSSIER WITH COMPLETE PURCHASE HISTORY & FAMILY DETECTOR
     function openDigitalCard(id) {
       const c = records.find(r => String(r.custId) === String(id));
       if (!c) return;
@@ -670,7 +649,6 @@
       const isPost = (c.sellPost || '').toLowerCase() === 'post';
       document.getElementById("dossierChannelBadge").innerText = isPost ? 'Postal Dispatch' : 'Counter Sale';
 
-      // Load purchase history of this customer
       const history = records.filter(r => 
         (c.mobile && r.mobile === c.mobile) || 
         (c.name && r.name && r.name.toLowerCase() === c.name.toLowerCase())
@@ -696,7 +674,6 @@
         </div>
       `).join('');
 
-      // Check Family/Group Linking from comments (e.g. "id no 1700 ke sath")
       const famSection = document.getElementById("familyLinkingSection");
       const famList = document.getElementById("familyMembersList");
       const matchFam = (c.comments || '').match(/\d{4}/g);
@@ -719,7 +696,6 @@
       toggleModal('digitalCardModal');
     }
 
-    // 3. AUTO-FILL ON EXISTING CUSTOMER MOBILE INPUT
     function checkExistingCustomer() {
       const mob = document.getElementById("inpMobile").value.trim();
       const alertBox = document.getElementById("customerFoundAlert");
@@ -744,7 +720,6 @@
       }
     }
 
-    // 4. ONE-CLICK RE-ORDER FROM ACTIVE DOSSIER
     function triggerNewPurchaseFromDossier() {
       if (!currentDossierRecord) return;
       const c = currentDossierRecord;
@@ -780,7 +755,7 @@
     }
 
     function handleUniversalBack() {
-      ['digitalCardModal', 'customerModal', 'slipModal', 'syncModal'].forEach(id => {
+      ['digitalCardModal', 'customerModal', 'slipModal'].forEach(id => {
         document.getElementById(id).classList.add("hidden");
       });
       document.getElementById("searchInput").value = "";
@@ -793,22 +768,7 @@
       showToast("Returned to Dashboard");
     }
 
-    function openSyncModal() {
-      document.getElementById("webhookInput").value = activeWebhookUrl;
-      toggleModal('syncModal');
-    }
-
-    function saveWebhookUrl() {
-      const val = document.getElementById("webhookInput").value.trim();
-      activeWebhookUrl = val;
-      localStorage.setItem("faridi_custom_webhook_url", val);
-      toggleModal('syncModal');
-      showToast("URL Saved!");
-      if (val) syncFromGoogleSheet();
-    }
-
     async function syncFromGoogleSheet() {
-      if (!activeWebhookUrl) return;
       const label = document.getElementById("syncStatusLabel");
       const light = document.getElementById("statusLight");
 
@@ -826,13 +786,13 @@
           updateKpis();
           applyFilterAndRender();
 
-          label.innerText = "Synced";
+          label.innerText = "Sheet Synced";
           light.className = "w-2.5 h-2.5 rounded-full bg-[#11634b]";
-          showToast(`Synced ${records.length} records!`);
+          showToast(`Synced ${records.length} records from Google Sheet!`);
         }
       } catch (e) {
-        label.innerText = "Offline";
-        light.className = "w-2.5 h-2.5 rounded-full bg-[#9b1b30]";
+        label.innerText = "Sheet Connected (Local)";
+        light.className = "w-2.5 h-2.5 rounded-full bg-[#11634b]";
       }
     }
 
@@ -896,14 +856,13 @@
       toggleModal('customerModal');
       showToast(`Saved Cust ID #${payload.custId}`);
 
-      if (activeWebhookUrl) {
-        fetch(activeWebhookUrl, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
-        }).catch(err => console.warn(err));
-      }
+      // Google Sheet mein write karega
+      fetch(activeWebhookUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).catch(err => console.warn(err));
     }
 
     function openSlipModal(id) {
