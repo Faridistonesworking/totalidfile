@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Phosphor Icons & QRCode -->
+  <!-- Phosphor Icons, QRCode -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
@@ -29,16 +29,16 @@
           },
           colors: {
             regal: {
-              gold: '#c59a3f',
-              darkgold: '#8f681a',
-              amber: '#dfb15b',
+              gold: '#b88a38',
+              darkgold: '#845e1b',
+              amber: '#d6a34a',
               lightgold: '#faedd2',
-              cream: '#faf8f3',
-              emerald: '#11634b',
-              emeraldLight: '#e4f4ee',
-              ruby: '#9b1b30',
-              rubyLight: '#fdecee',
-              slate: '#272f37'
+              cream: '#fbf9f5',
+              emerald: '#166534',
+              emeraldLight: '#f0fdf4',
+              ruby: '#991b1b',
+              rubyLight: '#fef2f2',
+              slate: '#1e293b'
             }
           }
         }
@@ -48,15 +48,16 @@
 
   <style>
     body {
-      background-color: #f7f4ec;
-      color: #272f37;
+      background-color: #f8f6f0;
+      color: #1e293b;
       overflow-x: hidden;
     }
 
+    /* Top Moving Animated Ticker */
     .moving-banner-bar {
-      background: linear-gradient(90deg, #1a1612 0%, #3a2a12 50%, #1a1612 100%);
-      border-bottom: 2px solid #d4af37;
-      padding: 8px 0;
+      background: linear-gradient(90deg, #18140f 0%, #352611 50%, #18140f 100%);
+      border-bottom: 2px solid #b88a38;
+      padding: 7px 0;
       overflow: hidden;
       position: sticky;
       top: 0;
@@ -66,7 +67,7 @@
     .moving-track {
       display: flex;
       width: max-content;
-      animation: tickerMove 30s linear infinite;
+      animation: tickerMove 28s linear infinite;
     }
 
     .moving-track:hover { animation-play-state: paused; }
@@ -79,14 +80,49 @@
     .moving-item {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      padding: 0 28px;
+      gap: 12px;
+      padding: 0 24px;
       font-family: 'Cinzel', serif;
-      color: #fff4d4;
-      font-size: 13px;
+      color: #faedd2;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    /* Refined Luxury Ledger Card with smooth elevation & subtle shimmer */
+    .luxury-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid #e5dcce;
+      border-radius: 1rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+    .luxury-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(214, 163, 74, 0.12), 
+        transparent
+      );
+      transform: skewX(-20deg);
+      transition: left 0.65s ease;
+      pointer-events: none;
+    }
+    .luxury-card:hover::before {
+      left: 140%;
+    }
+    .luxury-card:hover {
+      border-color: #d6a34a;
+      box-shadow: 0 12px 28px -6px rgba(184, 138, 56, 0.18), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+      transform: translateY(-3px);
     }
 
     @media print {
@@ -105,66 +141,87 @@
       .no-print { display: none !important; }
     }
 
+    .thermal-receipt {
+      width: 76mm;
+      margin: 0 auto;
+      background: #fff;
+      font-family: 'Space Mono', monospace;
+      padding: 12px;
+      color: #000;
+      font-size: 11px;
+      line-height: 1.35;
+      border: 1px dashed #555;
+    }
+
     ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f2ede0; }
-    ::-webkit-scrollbar-thumb { background: #d7c5a0; border-radius: 999px; }
+    ::-webkit-scrollbar-track { background: #f1ebd8; }
+    ::-webkit-scrollbar-thumb { background: #d5c8ad; border-radius: 999px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased">
 
-  <!-- TOP MOVING TICKER -->
+  <!-- TOP MOVING ANIMATED TICKER (RESTORED) -->
   <div class="moving-banner-bar">
     <div class="moving-track">
       <div class="moving-item">✦ FARIDI STONES AJMER</div>
       <div class="moving-item">✦ PROPRIETOR: HAJI JAWED FARIDI</div>
       <div class="moving-item">✦ NATURAL CERTIFIED GEMSTONES</div>
       <div class="moving-item">✦ HELPLINE: +91 9352937928</div>
+      <div class="moving-item">✦ NEAR PANJATAN GUEST HOUSE, PANNI GRAM CHOWK</div>
       <div class="moving-item">✦ FARIDI STONES AJMER</div>
       <div class="moving-item">✦ PROPRIETOR: HAJI JAWED FARIDI</div>
       <div class="moving-item">✦ NATURAL CERTIFIED GEMSTONES</div>
       <div class="moving-item">✦ HELPLINE: +91 9352937928</div>
+      <div class="moving-item">✦ NEAR PANJATAN GUEST HOUSE, PANNI GRAM CHOWK</div>
     </div>
   </div>
 
-  <!-- HEADER -->
-  <header class="sticky top-[38px] z-40 bg-white/95 backdrop-blur-md border-b border-[#e5dcce] shadow-sm">
+  <!-- CLEAN TOP NAVIGATION BAR -->
+  <header class="sticky top-[34px] z-40 bg-white border-b border-[#e2d9cc] shadow-xs">
     <div class="max-w-7xl mx-auto px-4 py-3">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
         
         <div class="flex items-center space-x-3">
-          <div class="w-12 h-12 p-2 rounded-2xl bg-[#faedd2] border border-[#d4af37] flex items-center justify-center text-[#8f681a] shadow-sm">
-            <i class="ph-fill ph-sketch-logo text-3xl"></i>
+          <div class="w-11 h-11 rounded-xl bg-[#faedd2] border border-[#d6a34a] flex items-center justify-center text-[#845e1b]">
+            <i class="ph-bold ph-sketch-logo text-2xl"></i>
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h1 class="text-xl font-black tracking-wider text-[#1e2329] font-serif uppercase">
+              <h1 class="text-xl font-bold tracking-wider text-[#0f172a] font-serif uppercase">
                 FARIDI STONES
               </h1>
-              <span class="text-[10px] bg-[#faedd2] text-[#8f681a] border border-[#d4af37]/60 px-2 py-0.5 rounded-full font-bold">
+              <span class="text-[10px] bg-[#faedd2] text-[#845e1b] border border-[#d6a34a]/60 px-2 py-0.5 rounded-full font-bold">
                 AJMER SHARIF
               </span>
             </div>
-            <div class="flex items-center gap-2 text-xs text-[#556778] mt-0.5">
-              <span class="font-bold text-[#8f681a]">Proprietor: Haji Jawed Faridi</span>
+            <div class="flex items-center gap-2 text-xs text-[#64748b] mt-0.5">
+              <span class="font-semibold text-[#845e1b]">Proprietor: Haji Jawed Faridi</span>
               <span>•</span>
-              <a href="tel:9352937928" class="font-bold text-[#11634b]">+91 9352937928</a>
+              <a href="tel:9352937928" class="font-semibold text-[#166534] hover:underline">+91 9352937928</a>
+              <span class="hidden sm:inline">•</span>
+              <span class="hidden sm:inline text-[#64748b]">Panni Gram Chowk</span>
             </div>
           </div>
         </div>
 
         <div class="flex items-center gap-2">
-          <button onclick="handleUniversalBack()" class="px-3.5 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#d4af37]/80 text-[#8f681a] text-xs font-bold transition-all">
+          <button onclick="handleUniversalBack()" class="px-3.5 py-2 rounded-xl bg-[#f8f6f0] hover:bg-[#ede5d3] border border-[#d5c8ad] text-[#845e1b] text-xs font-bold transition-all flex items-center gap-1.5">
             <i class="ph-bold ph-arrow-left"></i> Reset
           </button>
           
-          <button onclick="syncFromGoogleSheet()" class="px-3 py-2 rounded-xl bg-[#faf7ef] hover:bg-[#f2ece0] border border-[#c59a3f] text-[#8f681a] text-xs font-bold transition-all flex items-center gap-1.5" title="Click to force reload sheet data">
-            <span class="w-2.5 h-2.5 rounded-full bg-[#11634b]" id="statusLight"></span>
+          <button onclick="syncFromGoogleSheet()" class="px-3 py-2 rounded-xl bg-[#f8f6f0] hover:bg-[#ede5d3] border border-[#d6a34a] text-[#845e1b] text-xs font-bold transition-all flex items-center gap-1.5" title="Click to reload live data from Google Sheet">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#166534]" id="statusLight"></span>
             <span id="syncStatusLabel">Sheet Synced</span>
-            <i class="ph-bold ph-arrows-clockwise text-[#8f681a]"></i>
+            <i class="ph-bold ph-arrows-clockwise text-[#845e1b]"></i>
           </button>
 
-          <button onclick="openAddCustomerModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white text-xs font-bold shadow-md hover:brightness-105 transition-all">
-            + New Customer
+          <button onclick="toggleAudioMute()" id="btnSoundToggle" class="px-3 py-2 rounded-xl bg-[#f8f6f0] hover:bg-[#ede5d3] border border-[#d5c8ad] text-[#845e1b] text-xs font-bold transition-all" title="Sound Effects Toggle">
+            <i class="ph-fill ph-speaker-high text-sm" id="soundIcon"></i>
+          </button>
+
+          <button onclick="openAddCustomerModal()" class="px-4 py-2 rounded-xl bg-[#b88a38] hover:bg-[#845e1b] text-white text-xs font-bold shadow-xs transition-all flex items-center gap-1.5">
+            <i class="ph-bold ph-plus-circle text-base"></i>
+            <span>+ New Customer</span>
           </button>
         </div>
 
@@ -173,51 +230,47 @@
   </header>
 
   <!-- MAIN APP CONTAINER -->
-  <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-5 space-y-5">
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 py-5 space-y-4">
 
     <!-- KPI STATS -->
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
-        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Customer Base</span>
-        <span class="text-2xl font-bold font-serif text-[#1e2329]" id="kpiTotalCustomers">0</span>
+    <div class="grid grid-cols-3 gap-3">
+      <div class="bg-white rounded-xl p-3.5 border border-[#e2d9cc]">
+        <span class="text-[11px] font-bold uppercase text-[#64748b] block">Total Customers</span>
+        <span class="text-2xl font-bold font-serif text-[#0f172a] mt-0.5 block" id="kpiTotalCustomers">0</span>
       </div>
-      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
-        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Ledger Turnout</span>
-        <span class="text-2xl font-bold font-serif text-[#8f681a]" id="kpiTotalRevenue">₹0</span>
+      <div class="bg-white rounded-xl p-3.5 border border-[#e2d9cc]">
+        <span class="text-[11px] font-bold uppercase text-[#64748b] block">Parcels Dispatched</span>
+        <span class="text-2xl font-bold font-serif text-[#1e3d59] mt-0.5 block" id="kpiPostalCount">0</span>
       </div>
-      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
-        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Parcels Dispatched</span>
-        <span class="text-2xl font-bold font-serif text-[#1e3d59]" id="kpiPostalCount">0</span>
-      </div>
-      <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm">
-        <span class="text-[11px] font-bold uppercase text-[#796c56] block">Certified Stones</span>
-        <span class="text-2xl font-bold font-serif text-[#11634b]" id="kpiCertCount">0</span>
+      <div class="bg-white rounded-xl p-3.5 border border-[#e2d9cc]">
+        <span class="text-[11px] font-bold uppercase text-[#64748b] block">Certified Gemstones</span>
+        <span class="text-2xl font-bold font-serif text-[#166534] mt-0.5 block" id="kpiCertCount">0</span>
       </div>
     </div>
 
-    <!-- FILTER BAR WITH 100-ID BATCH SELECTOR -->
-    <div class="bg-white rounded-2xl p-4 border border-[#e5dcce] shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
+    <!-- CLEAN FILTER BAR -->
+    <div class="bg-white rounded-xl p-3 border border-[#e2d9cc] flex flex-col md:flex-row gap-3 items-center justify-between">
       <div class="relative flex-1 w-full">
-        <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9fa9b3]"></i>
+        <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94a3b8]"></i>
         <input 
           type="text" 
           id="searchInput" 
           oninput="onSearchInput()" 
-          placeholder="Search Customer, Mobile, Cust ID, Stone, or City..." 
-          class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-medium outline-none focus:border-[#c59a3f]"
+          placeholder="Search Customer, Mobile, Cust ID, Stone, Reference, or City..." 
+          class="w-full pl-10 pr-4 py-2 rounded-lg bg-[#f8f6f0] border border-[#d5c8ad] text-xs font-medium outline-none focus:bg-white focus:border-[#b88a38]"
         >
       </div>
 
       <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-        <!-- 100-CUSTOMER BATCH DROPDOWN -->
-        <select id="idBatchFilter" onchange="onBatchFilterChange()" class="px-3 py-2.5 rounded-xl bg-[#faedd2] border-2 border-[#d4af37] text-xs font-bold text-[#8f681a] outline-none cursor-pointer">
+        <select id="idBatchFilter" onchange="onBatchFilterChange()" class="px-3 py-2 rounded-lg bg-[#faedd2] border border-[#d6a34a] text-xs font-bold text-[#845e1b] outline-none cursor-pointer">
           <option value="all">📂 All Customer Batches</option>
         </select>
 
-        <select id="stoneFilter" onchange="applyFilterAndRender()" class="px-3 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-semibold outline-none cursor-pointer">
+        <select id="stoneFilter" onchange="applyFilterAndRender()" class="px-3 py-2 rounded-lg bg-[#f8f6f0] border border-[#d5c8ad] text-xs font-semibold outline-none cursor-pointer">
           <option value="">All Gemstones</option>
         </select>
-        <select id="dispatchFilter" onchange="applyFilterAndRender()" class="px-3 py-2.5 rounded-xl bg-[#faf8f4] border border-[#dfd4c0] text-xs font-semibold outline-none cursor-pointer">
+        
+        <select id="dispatchFilter" onchange="applyFilterAndRender()" class="px-3 py-2 rounded-lg bg-[#f8f6f0] border border-[#d5c8ad] text-xs font-semibold outline-none cursor-pointer">
           <option value="">All Channels</option>
           <option value="sell">Counter Sale</option>
           <option value="post">Postal</option>
@@ -228,16 +281,16 @@
     <!-- COUNT & PAGINATION BAR -->
     <div class="flex items-center justify-between px-1">
       <div class="flex items-center gap-2">
-        <span class="text-xs font-bold text-[#796c56]" id="cardsCountLabel">Showing 0 dossiers</span>
-        <span id="activeBatchPill" class="hidden text-[10px] bg-[#faedd2] text-[#8f681a] border border-[#d4af37] px-2 py-0.5 rounded font-bold"></span>
+        <span class="text-xs font-bold text-[#64748b]" id="cardsCountLabel">Showing 0 dossiers</span>
+        <span id="activeBatchPill" class="hidden text-[10px] bg-[#faedd2] text-[#845e1b] border border-[#d6a34a] px-2 py-0.5 rounded font-bold"></span>
       </div>
       
       <div class="flex items-center gap-2" id="paginationControls">
-        <button onclick="prevPage()" id="btnPrevPage" class="px-3 py-1 bg-white border border-[#dccfb4] rounded-lg text-xs font-bold text-[#8f681a] disabled:opacity-40">
+        <button onclick="prevPage()" id="btnPrevPage" class="px-3 py-1 bg-white border border-[#d5c8ad] rounded-lg text-xs font-bold text-[#845e1b] disabled:opacity-40 hover:bg-[#f8f6f0]">
           ← Prev
         </button>
-        <span class="text-xs font-bold text-[#1e2329]" id="pageIndicator">Page 1 of 1</span>
-        <button onclick="nextPage()" id="btnNextPage" class="px-3 py-1 bg-white border border-[#dccfb4] rounded-lg text-xs font-bold text-[#8f681a] disabled:opacity-40">
+        <span class="text-xs font-bold text-[#0f172a]" id="pageIndicator">Page 1 of 1</span>
+        <button onclick="nextPage()" id="btnNextPage" class="px-3 py-1 bg-white border border-[#d5c8ad] rounded-lg text-xs font-bold text-[#845e1b] disabled:opacity-40 hover:bg-[#f8f6f0]">
           Next →
         </button>
       </div>
@@ -246,14 +299,14 @@
     <!-- CARDS GRID -->
     <div id="cardsGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
 
-    <div id="emptyResultsState" class="hidden py-12 text-center bg-white rounded-2xl border border-[#e5dcce]">
-      <p class="text-sm font-bold text-[#1e2329]">No customer records found</p>
-      <button onclick="clearSearchField()" class="mt-3 px-4 py-1.5 rounded-xl bg-[#faedd2] text-[#8f681a] text-xs font-bold">Reset Filters</button>
+    <div id="emptyResultsState" class="hidden py-12 text-center bg-white rounded-xl border border-[#e2d9cc]">
+      <p class="text-sm font-bold text-[#0f172a]">No customer records found</p>
+      <button onclick="clearSearchField()" class="mt-3 px-4 py-1.5 rounded-lg bg-[#faedd2] text-[#845e1b] text-xs font-bold">Reset Filters</button>
     </div>
 
   </main>
 
-  <!-- ADD / EDIT CUSTOMER MODAL (AUTO-FILL & DUPLICATE ALERT) -->
+  <!-- ADD / EDIT CUSTOMER MODAL -->
   <div id="customerModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 shadow-2xl p-6">
       <div class="flex justify-between items-center pb-3 border-b mb-3">
@@ -261,7 +314,7 @@
           <h3 class="text-base font-bold font-serif text-[#1e2329]" id="modalFormTitle">Customer Entry</h3>
           <p class="text-[11px] text-[#796c56]">Proprietor: Haji Jawed Faridi • Faridi Stones</p>
         </div>
-        <button onclick="toggleModal('customerModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
+        <button onclick="closeModal('customerModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
       </div>
 
       <!-- DUPLICATE CUSTOMER ALERT BANNER -->
@@ -322,7 +375,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Channel</label>
             <select id="inpSellPost" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
@@ -337,6 +390,13 @@
               <option value="online">Online</option>
             </select>
           </div>
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Reference Name *</label>
+            <input type="text" id="inpReference" placeholder="e.g. javed bhai" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border border-[#c59a3f] outline-none capitalize font-medium">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">City</label>
             <input type="text" id="inpCity" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
@@ -353,97 +413,302 @@
         </div>
 
         <div class="pt-3 border-t flex justify-end gap-2">
-          <button type="button" onclick="toggleModal('customerModal')" class="px-4 py-2 border rounded-xl font-bold">Cancel</button>
-          <button type="submit" class="px-5 py-2 bg-[#c59a3f] text-white rounded-xl font-bold">Save Record</button>
+          <button type="button" onclick="closeModal('customerModal')" class="px-4 py-2 border rounded-xl font-bold">Cancel</button>
+          <button type="submit" class="px-5 py-2 bg-[#c59a3f] text-white rounded-xl font-bold shadow-md hover:brightness-105">Save Record</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- DIGITAL DOSSIER MODAL WITH FULL PURCHASE HISTORY & FAMILY LINKING -->
-  <div id="digitalCardModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 p-6 space-y-4">
-      <div class="flex justify-between items-start pb-2 border-b">
+  <!-- DIGITAL DOSSIER MODAL (FIXED SCREEN SIZING & CLEAN INNER SCROLLING) -->
+  <div id="digitalCardModal" class="fixed inset-0 bg-[#1e2329]/75 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- MODAL HEADER (STICKY AT TOP) -->
+      <div class="flex justify-between items-start p-4 sm:p-5 border-b border-[#ebd7b5] bg-gradient-to-r from-[#fbf8f0] to-[#f4ebe0] shrink-0">
         <div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
             <span class="text-xs font-mono font-bold bg-[#faedd2] text-[#8f681a] px-2 py-0.5 rounded border border-[#d4af37]" id="dossierCustId">-</span>
             <span class="text-[10px] uppercase font-bold bg-[#e4f4ee] text-[#11634b] px-2 py-0.5 rounded-full" id="dossierChannelBadge">Store</span>
+            
+            <span class="text-[10px] uppercase font-bold bg-[#faf3e3] border border-[#dccfb4] text-[#8f681a] px-2 py-0.5 rounded-full flex items-center gap-1">
+              <i class="ph-fill ph-user-check text-[#11634b]"></i> Ref: <span id="dossierRefBadge" class="capitalize">-</span>
+            </span>
           </div>
-          <h3 class="text-xl font-black font-serif text-[#1e2329] capitalize mt-1" id="dossierName">-</h3>
+          <h3 class="text-lg sm:text-xl font-black font-serif text-[#1e2329] capitalize mt-1" id="dossierName">-</h3>
           <p class="text-xs text-[#556778] font-mono mt-0.5">📞 <span id="dossierMobile">-</span> • <span id="dossierLocation">-</span></p>
         </div>
-        <button onclick="toggleModal('digitalCardModal')" class="text-lg"><i class="ph-bold ph-x"></i></button>
-      </div>
-
-      <!-- MAIN STONE DETAILS -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs bg-[#faf8f4] p-3 rounded-2xl border">
-        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Gemstone</span><b class="text-[#8f681a] uppercase text-sm" id="dossierStoneName">-</b></div>
-        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Weight</span><b id="dossierStoneWeight">-</b></div>
-        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Billed</span><b class="text-[#11634b] text-sm" id="dossierAmount">-</b></div>
-        <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Mother Name</span><b id="dossierMotherName" class="capitalize">-</b></div>
-      </div>
-
-      <!-- FAMILY / GROUP LINKING DISPLAY -->
-      <div id="familyLinkingSection" class="hidden p-3 bg-[#fdfaf3] border border-[#ebd7b5] rounded-xl text-xs space-y-1">
-        <div class="flex items-center gap-1.5 text-[#8f681a] font-bold">
-          <i class="ph-fill ph-users-three text-sm"></i>
-          <span>Linked Family / Group Members:</span>
-        </div>
-        <div id="familyMembersList" class="flex flex-wrap gap-2 pt-1"></div>
-      </div>
-
-      <!-- COMPLETE PAST PURCHASE HISTORY OF THIS CUSTOMER -->
-      <div class="border-t pt-3">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#796c56] flex items-center gap-1">
-            <i class="ph-bold ph-clock-counter-clockwise"></i> Customer Purchase History
-          </span>
-          <span class="text-[11px] font-mono text-[#8f681a] font-bold" id="totalCustomerSpend">-</span>
-        </div>
-        <div id="purchaseHistoryContainer" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
-      </div>
-
-      <!-- ACTION BUTTONS -->
-      <div class="flex flex-wrap gap-2 pt-2 border-t">
-        <button onclick="triggerNewPurchaseFromDossier()" class="flex-1 py-2 bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1">
-          <i class="ph-bold ph-plus-circle"></i> + Add New Purchase
+        <button onclick="closeModal('digitalCardModal')" class="p-1.5 rounded-xl hover:bg-[#ebd7b5]/50 text-[#78716c] hover:text-[#1e2329] text-lg transition-colors">
+          <i class="ph-bold ph-x"></i>
         </button>
-        <button onclick="sendActiveDossierWhatsApp()" class="py-2 px-4 bg-[#11634b] text-white rounded-xl text-xs font-bold flex items-center gap-1">
+      </div>
+
+      <!-- SCROLLABLE BODY CONTAINER -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5 text-xs">
+        <!-- MAIN STONE DETAILS -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-[#faf8f4] p-3 rounded-2xl border border-[#ebd7b5]">
+          <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Gemstone</span><b class="text-[#8f681a] uppercase text-sm truncate block" id="dossierStoneName">-</b></div>
+          <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Weight</span><b id="dossierStoneWeight" class="text-xs truncate block">-</b></div>
+          <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Billed</span><b class="text-[#11634b] text-sm truncate block" id="dossierAmount">-</b></div>
+          <div><span class="text-[#796c56] block text-[10px] uppercase font-bold">Mother Name</span><b id="dossierMotherName" class="capitalize truncate block">-</b></div>
+        </div>
+
+        <!-- REFERENCE & COMMENTS SECTION -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+          <div class="p-2.5 bg-[#faf6ee] rounded-xl border border-[#ebd7b5]">
+            <span class="text-[10px] font-bold text-[#796c56] uppercase block">Reference Person:</span>
+            <p class="text-[#8f681a] font-bold capitalize mt-0.5 truncate" id="dossierReference">-</p>
+          </div>
+          <div class="sm:col-span-2 p-2.5 bg-[#faf6ee] rounded-xl border border-[#ebd7b5]">
+            <span class="text-[10px] font-bold text-[#796c56] uppercase block">Comments:</span>
+            <p class="text-[#272f37] italic font-medium mt-0.5 line-clamp-2" id="dossierComments">-</p>
+          </div>
+        </div>
+
+        <!-- FAMILY / GROUP LINKING DISPLAY -->
+        <div id="familyLinkingSection" class="hidden p-2.5 bg-[#fdfaf3] border border-[#ebd7b5] rounded-xl text-xs space-y-1">
+          <div class="flex items-center gap-1.5 text-[#8f681a] font-bold">
+            <i class="ph-fill ph-users-three text-sm"></i>
+            <span>Linked Family / Group Members:</span>
+          </div>
+          <div id="familyMembersList" class="flex flex-wrap gap-1.5 pt-0.5"></div>
+        </div>
+
+        <!-- CLICKABLE PURCHASE HISTORY OF THIS CUSTOMER -->
+        <div class="border-t border-[#ede4d4] pt-2.5">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-xs font-bold uppercase tracking-wider text-[#796c56] flex items-center gap-1">
+              <i class="ph-bold ph-clock-counter-clockwise"></i> Customer Purchase History
+              <span class="text-[10px] text-[#8a96a3] font-normal hidden sm:inline">(Click any order to view)</span>
+            </span>
+            <span class="text-[11px] font-mono text-[#8f681a] font-bold" id="totalCustomerSpend">-</span>
+          </div>
+          <div id="purchaseHistoryContainer" class="space-y-1.5 max-h-40 overflow-y-auto pr-1"></div>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS FOOTER (STICKY AT BOTTOM) -->
+      <div class="flex flex-wrap gap-2 p-3 sm:p-4 border-t border-[#ebd7b5] bg-[#faf8f4] shrink-0">
+        <button onclick="editCurrentDossierRecord()" class="py-2 px-3 bg-white border border-[#d4af37] text-[#8f681a] rounded-xl text-xs font-bold flex items-center justify-center gap-1 hover:bg-[#faedd2] transition-all">
+          <i class="ph-bold ph-pencil-simple"></i> Edit
+        </button>
+
+        <button onclick="triggerNewPurchaseFromDossier()" class="flex-1 py-2 bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 hover:brightness-105 transition-all">
+          <i class="ph-bold ph-plus-circle"></i> + Add New
+        </button>
+
+        <button onclick="sendActiveDossierWhatsApp()" class="py-2 px-3.5 bg-[#11634b] text-white rounded-xl text-xs font-bold flex items-center gap-1 hover:bg-[#0c4e3a] transition-all">
           <i class="ph-bold ph-whatsapp-logo"></i> WhatsApp
         </button>
-        <button onclick="openSlipFromDossier()" class="py-2 px-4 bg-[#faf7ef] border border-[#dccfb4] text-[#8f681a] rounded-xl text-xs font-bold flex items-center gap-1">
-          <i class="ph-bold ph-printer"></i> Print Slip
+        <button onclick="openSlipFromDossier()" class="py-2 px-3.5 bg-white border border-[#dccfb4] text-[#8f681a] rounded-xl text-xs font-bold flex items-center gap-1 hover:bg-[#f2ece0] transition-all">
+          <i class="ph-bold ph-printer"></i> Slip
         </button>
       </div>
+
     </div>
   </div>
 
   <!-- SLIP MODAL -->
-  <div id="slipModal" class="fixed inset-0 bg-[#1e2329]/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-lg p-6">
-      <div class="flex justify-between items-center pb-3 border-b no-print">
-        <h3 class="text-sm font-bold font-serif">Faridi Stones Verified Slip</h3>
-        <div class="flex gap-2">
-          <button onclick="window.print()" class="px-3 py-1 bg-[#c59a3f] text-white text-xs font-bold rounded-lg">Print</button>
-          <button onclick="toggleModal('slipModal')" class="text-base"><i class="ph-bold ph-x"></i></button>
+  <div id="slipModal" class="fixed inset-0 bg-[#1e2329]/75 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 shadow-2xl overflow-hidden">
+      
+      <!-- SLIP MODAL ACTIONS HEADER -->
+      <div class="flex flex-wrap justify-between items-center px-6 py-3.5 bg-gradient-to-r from-[#1c1712] via-[#2d2212] to-[#1c1712] text-white border-b border-[#d4af37] no-print gap-2">
+        <div class="flex items-center space-x-2">
+          <i class="ph-fill ph-seal-check text-[#d4af37] text-xl"></i>
+          <div>
+            <h3 class="text-sm font-bold font-serif tracking-wider text-[#faedd2]">AUTHENTIC GEMSTONE DOSSIER</h3>
+            <p class="text-[10px] text-[#c5b79d]">Faridi Stones • Ajmer Sharif</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="toggleSlipFormat()" id="btnToggleFormat" class="px-3 py-1.5 bg-[#ffffff]/10 hover:bg-[#ffffff]/20 text-[#faedd2] border border-[#d4af37]/60 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5">
+            <i class="ph-bold ph-receipt"></i>
+            <span id="formatToggleText">Thermal 80mm</span>
+          </button>
+          <button onclick="sendSlipWhatsApp()" class="px-3 py-1.5 bg-[#11634b] hover:bg-[#0c4e3a] text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+            <i class="ph-bold ph-whatsapp-logo text-sm"></i> WhatsApp
+          </button>
+          <button onclick="window.print()" class="px-3.5 py-1.5 bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm hover:brightness-105">
+            <i class="ph-bold ph-printer text-sm"></i> Print
+          </button>
+          <button onclick="closeModal('slipModal')" class="p-1.5 text-[#c5b79d] hover:text-white rounded-lg hover:bg-white/10 text-lg transition-colors">
+            <i class="ph-bold ph-x"></i>
+          </button>
         </div>
       </div>
 
-      <div id="printContainer" class="p-4 bg-white text-[#1e2329]">
-        <div class="text-center border-b pb-2 mb-3">
-          <h2 class="text-xl font-bold font-serif">FARIDI STONES</h2>
-          <p class="text-[10px] text-[#796c56]">Prop: Haji Jawed Faridi • Near Panjatan Guest House, Ajmer</p>
-          <p class="text-[10px] font-mono">Helpline: +91 9352937928</p>
+      <!-- PRINT & PREVIEW CONTAINER -->
+      <div id="printContainer" class="p-4 sm:p-6 bg-[#f7f4ed]">
+        
+        <!-- 1. ROYAL A4 CERTIFICATE INVOICE VIEW -->
+        <div id="royalA4View" class="royal-slip-container p-6 sm:p-8 rounded-2xl shadow-royal text-[#1e2329] relative overflow-hidden">
+          
+          <!-- FILIGREE CORNERS -->
+          <div class="royal-corner royal-corner-tl"></div>
+          <div class="royal-corner royal-corner-tr"></div>
+          <div class="royal-corner royal-corner-bl"></div>
+          <div class="royal-corner royal-corner-br"></div>
+
+          <!-- WATERMARK LOGO -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.035]">
+            <i class="ph-fill ph-sketch-logo text-[380px] text-[#8f681a]"></i>
+          </div>
+
+          <!-- CERTIFICATE HEADER -->
+          <div class="relative z-10 border-b-2 border-[#d4af37]/80 pb-4 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#faedd2] to-[#eedab4] border border-[#d4af37] flex items-center justify-center text-[#8f681a] shadow-xs">
+                  <i class="ph-fill ph-sketch-logo text-2xl"></i>
+                </div>
+                <div>
+                  <h2 class="text-2xl font-black font-serif tracking-widest text-[#15110d] uppercase">FARIDI STONES</h2>
+                  <p class="text-[11px] font-bold text-[#8f681a] uppercase tracking-wider">Natural Certified Astrological Gemstones</p>
+                </div>
+              </div>
+              <p class="text-[11px] text-[#556778] mt-1.5">Near Panjatan Guest House, Panni Gram Chowk, Dargah Sharif, Ajmer (Raj.)</p>
+              <p class="text-[11px] font-mono text-[#556778]">
+                <strong>Proprietor: Haji Jawed Faridi</strong> • Phone: <a href="tel:9352937928" class="font-bold text-[#11634b]">+91 9352937928</a>
+              </p>
+            </div>
+
+            <div class="text-left sm:text-right w-full sm:w-auto border-t sm:border-t-0 pt-2 sm:pt-0 border-[#eedab4]">
+              <div class="inline-block bg-[#faedd2] border border-[#d4af37] px-3.5 py-1 rounded-xl font-mono font-black text-sm text-[#8f681a] shadow-xs" id="slipId">
+                #0000
+              </div>
+              <p class="text-[11px] font-mono text-[#556778] mt-1" id="slipDate">Date: -</p>
+              <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase mt-1 bg-[#e4f4ee] text-[#11634b] border border-[#b8e2d2]" id="slipChannelBadge">Counter Sale</span>
+            </div>
+          </div>
+
+          <!-- CLIENT & ASTRO DETAILS BOX -->
+          <div class="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-gradient-to-br from-[#fcfaf5] to-[#f6efe1] p-3.5 rounded-2xl border border-[#e5dcce] text-xs mb-4">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Customer Name:</span>
+              <span class="font-bold font-serif text-sm text-[#1e2329] capitalize block mt-0.5" id="slipName">-</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Contact Number:</span>
+              <span class="font-mono font-bold text-xs text-[#1e2329] block mt-0.5" id="slipMobile">-</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Mother's Name:</span>
+              <span class="font-semibold text-xs text-[#424d57] capitalize block mt-0.5" id="slipMother">-</span>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-[#796c56] block">City &amp; State:</span>
+              <span class="font-semibold text-xs text-[#424d57] capitalize block mt-0.5" id="slipCity">-</span>
+            </div>
+          </div>
+
+          <!-- GEMSTONE SPECIFICATION TABLE -->
+          <div class="relative z-10 overflow-hidden rounded-xl border border-[#d4af37]/60 mb-4 bg-white">
+            <table class="w-full text-xs">
+              <thead class="bg-gradient-to-r from-[#faedd2] via-[#f7e6c4] to-[#faedd2] text-[#8f681a] font-serif font-bold border-b border-[#d4af37]/60">
+                <tr>
+                  <th class="p-2.5 text-left uppercase tracking-wider">Gemstone Description</th>
+                  <th class="p-2.5 text-center uppercase tracking-wider">Weight (S.Wgt)</th>
+                  <th class="p-2.5 text-center uppercase tracking-wider">Lab Certificate</th>
+                  <th class="p-2.5 text-right uppercase tracking-wider">Amount (INR)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[#f0e8da]">
+                <tr>
+                  <td class="p-3">
+                    <span class="font-serif font-black text-sm text-[#1e2329] uppercase block" id="slipStone">-</span>
+                    <span class="text-[10px] text-[#796c56]">Untreated Natural Astrological Grade</span>
+                  </td>
+                  <td class="p-3 text-center font-mono font-bold text-[#1e2329]" id="slipWeight">-</td>
+                  <td class="p-3 text-center font-mono text-[#8f681a] font-semibold" id="slipCert">-</td>
+                  <td class="p-3 text-right font-serif font-black text-base text-[#11634b]" id="slipAmount">₹0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- REMARKS, REFERENCE & QR CODE -->
+          <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 mb-4 border-t border-[#ede4d4] text-xs">
+            <div class="flex-1 space-y-1 text-left w-full sm:w-auto">
+              <div>
+                <span class="text-[10px] font-bold text-[#796c56] uppercase">Special Remarks &amp; Instructions:</span>
+                <p class="text-[#272f37] italic font-medium mt-0.5" id="slipRemarks">-</p>
+              </div>
+              <div class="flex items-center gap-2 pt-1 text-[11px] text-[#796c56]">
+                <span>• Reference: <strong class="text-[#1e2329] capitalize" id="slipReference">-</strong></span>
+                <span>• Mode: <strong class="text-[#11634b] uppercase" id="slipPayment">CASH</strong></span>
+              </div>
+            </div>
+
+            <!-- DYNAMIC QR VERIFICATION CODE -->
+            <div class="flex items-center gap-3 bg-[#faf6ee] p-2.5 rounded-xl border border-[#ebd7b5] shrink-0">
+              <div id="slipQrContainer" class="w-16 h-16 bg-white p-1 rounded-lg border border-[#d4af37]/40 flex items-center justify-center"></div>
+              <div class="text-[10px] text-[#796c56] leading-tight">
+                <span class="font-bold text-[#8f681a] block font-serif uppercase">Verified Seal</span>
+                <span>Scan with phone</span>
+                <span class="block font-mono text-[9px] text-[#a49680] mt-0.5">Faridi Ledger ID</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CERTIFICATE SIGNATURE FOOTER -->
+          <div class="relative z-10 pt-4 border-t border-dashed border-[#d4af37]/60 flex justify-between items-end text-[11px]">
+            <div>
+              <p class="font-serif font-black text-xs text-[#8f681a] uppercase tracking-wider">FARIDI STONES AJMER</p>
+              <p class="text-[10px] text-[#796c56]">Guaranteed Genuine &amp; Natural</p>
+            </div>
+
+            <div class="text-right">
+              <div class="inline-block border-b border-[#272f37] pb-1 px-4 mb-1">
+                <span class="font-serif font-black text-xs text-[#1e2329]">Haji Jawed Faridi</span>
+              </div>
+              <p class="text-[10px] text-[#796c56] uppercase tracking-wider">Authorized Gemologist / Signatory</p>
+            </div>
+          </div>
+
         </div>
-        <div class="space-y-1 text-xs">
-          <div><b>ID:</b> <span id="slipId">-</span></div>
-          <div><b>Customer:</b> <span id="slipName">-</span></div>
-          <div><b>Gemstone:</b> <span id="slipStone">-</span> (<span id="slipWeight">-</span>)</div>
-          <div><b>Amount:</b> ₹<span id="slipAmount">-</span></div>
-          <div><b>City:</b> <span id="slipCity">-</span></div>
-          <div><b>Remarks:</b> <span id="slipRemarks">-</span></div>
+
+        <!-- 2. THERMAL 80MM RECEIPT VIEW -->
+        <div id="thermalView" class="thermal-receipt hidden rounded-xl shadow-royal">
+          <div style="text-align: center; border-bottom: 1px dashed #000; padding-bottom: 8px; margin-bottom: 8px;">
+            <p style="font-size: 16px; font-weight: bold; margin: 0; font-family: 'Cinzel', serif;">FARIDI STONES</p>
+            <p style="font-size: 9px; margin: 2px 0;">Prop: Haji Jawed Faridi • Mob: 9352937928</p>
+            <p style="font-size: 9px; margin: 0;">Near Panjatan Guest House, Ajmer Sharif</p>
+          </div>
+
+          <table style="width: 100%; font-size: 10px; margin-bottom: 6px;">
+            <tr><td><b>ID:</b> <span id="thSlipId">-</span></td><td style="text-align: right;"><span id="thSlipDate">-</span></td></tr>
+            <tr><td><b>Cust:</b> <span id="thSlipName">-</span></td><td style="text-align: right;"><b>Mob:</b> <span id="thSlipMobile">-</span></td></tr>
+            <tr><td colspan="2"><b>City:</b> <span id="thSlipCity">-</span></td></tr>
+            <tr><td colspan="2"><b>Ref:</b> <span id="thSlipReference">-</span></td></tr>
+          </table>
+
+          <div style="border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 6px 0; margin-bottom: 6px;">
+            <table style="width: 100%; font-size: 10px;">
+              <tr>
+                <td><b>Stone:</b> <span id="thSlipStone">-</span></td>
+                <td style="text-align: right;"><b>Wgt:</b> <span id="thSlipWeight">-</span></td>
+              </tr>
+              <tr>
+                <td><b>Cert:</b> <span id="thSlipCert">-</span></td>
+                <td style="text-align: right;"><b>Pay:</b> <span id="thSlipPayment">CASH</span></td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="text-align: right; font-size: 14px; font-weight: bold; margin: 6px 0;">
+            TOTAL: <span id="thSlipAmount">₹0</span>
+          </div>
+
+          <div style="text-align: center; font-size: 8px; border-top: 1px dashed #000; padding-top: 6px;">
+            <p style="margin: 0; font-weight: bold;">100% Natural Astrological Gemstones</p>
+            <p style="margin: 2px 0;">Haji Jawed Faridi • Thank You</p>
+          </div>
         </div>
+
       </div>
+
     </div>
   </div>
 
@@ -453,20 +718,62 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // =========================================================================
-    // AAPKA GOOGLE SHEET URL CODE MEIN FIX HO CHUKA HAI:
-    // =========================================================================
     const DEFAULT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwnkPuZWOkQrLO8F0Sk5TBai37dgcXYzCFIUkdGVzW2jm_mxDMggq0EoEDmGM9YRvtFYw/exec";
-
     let activeWebhookUrl = DEFAULT_WEBHOOK_URL;
     let records = [];
     let filteredRecords = [];
     let currentDossierRecord = null;
     let activeSlipRecord = null;
+    let isSoundEnabled = true;
+    let currentSlipFormat = 'a4'; // 'a4' or 'thermal'
     
     const ITEMS_PER_PAGE = 24;
     let currentPage = 1;
     let searchTimer = null;
+
+    // AUDIO CHIME SYNTHESIZER
+    let audioCtx = null;
+    function playSuccessChime() {
+      if (!isSoundEnabled) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const notes = [1046.50, 1318.51, 1567.98];
+        notes.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.1);
+
+          gain.gain.setValueAtTime(0, audioCtx.currentTime + i * 0.1);
+          gain.gain.linearRampToValueAtTime(0.2, audioCtx.currentTime + i * 0.1 + 0.02);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.1 + 0.35);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(audioCtx.currentTime + i * 0.1);
+          osc.stop(audioCtx.currentTime + i * 0.1 + 0.35);
+        });
+      } catch (err) {
+        console.warn('Audio error:', err);
+      }
+    }
+
+    function toggleAudioMute() {
+      isSoundEnabled = !isSoundEnabled;
+      const icon = document.getElementById("soundIcon");
+      if (isSoundEnabled) {
+        icon.className = "ph-fill ph-speaker-high text-sm";
+        showToast("Audio effects enabled!");
+        playSuccessChime();
+      } else {
+        icon.className = "ph-fill ph-speaker-slash text-sm";
+        showToast("Audio muted");
+      }
+    }
 
     window.addEventListener("DOMContentLoaded", () => {
       loadCachedData();
@@ -475,7 +782,6 @@
       updateKpis();
       applyFilterAndRender();
 
-      // Seedha Google Sheet se live connect karega
       syncFromGoogleSheet();
     });
 
@@ -490,7 +796,6 @@
       localStorage.setItem("faridi_royal_records_v3", JSON.stringify(records));
     }
 
-    // GENERATE DYNAMIC 100-ID BATCHES (e.g. 1701-1800, 1801-1900)
     function generate100IdBatchOptions() {
       const sel = document.getElementById("idBatchFilter");
       sel.innerHTML = '<option value="all">📂 All Customer Batches</option>';
@@ -555,6 +860,7 @@
           String(c.mobile || '').includes(q) ||
           String(c.custId || '').includes(q) ||
           String(c.city || '').toLowerCase().includes(q) ||
+          String(c.reference || '').toLowerCase().includes(q) ||
           String(c.stoneName || '').toLowerCase().includes(q);
 
         const matchStone = !stone || String(c.stoneName || '').toLowerCase().includes(stone);
@@ -604,27 +910,72 @@
         const hasHistory = count > 1;
 
         return `
-          <div onclick="openDigitalCard('${c.custId}')" class="bg-white rounded-2xl border border-[#e5dcce] p-4 shadow-sm hover:border-[#c59a3f] cursor-pointer transition-all flex flex-col justify-between">
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <div class="flex items-center gap-1.5">
-                  <span class="font-mono text-xs font-bold bg-[#faedd2] text-[#8f681a] px-2 py-0.5 rounded-lg border border-[#d4af37]/50">#${c.custId}</span>
-                  ${hasHistory ? `<span class="text-[9px] bg-[#e4edf5] text-[#1e3d59] font-bold px-1.5 py-0.5 rounded">${count} Orders</span>` : ''}
+          <div onclick="openDigitalCard('${c.custId}')" class="luxury-card p-4 flex flex-col justify-between cursor-pointer">
+            <div class="space-y-2.5">
+              <!-- Header Row: ID, Badges, Amount -->
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5 flex-wrap min-w-0">
+                  <span class="font-mono text-xs font-black bg-[#faedd2] text-[#845e1b] px-2 py-0.5 rounded-md border border-[#d6a34a]/60 shadow-xs">
+                    #${c.custId}
+                  </span>
+                  ${hasHistory ? `<span class="text-[10px] bg-[#e0f2fe] text-[#0369a1] font-bold px-1.5 py-0.5 rounded border border-[#bae6fd] whitespace-nowrap">${count} Orders</span>` : ''}
                 </div>
-                <span class="font-serif font-bold text-sm text-[#8f681a]">₹${(parseInt(c.amount) || 0).toLocaleString('en-IN')}</span>
+                <div class="shrink-0 text-right">
+                  <span class="font-serif font-black text-sm text-[#845e1b] bg-[#fbf9f5] px-2.5 py-0.5 rounded-lg border border-[#e2d9cc] inline-block shadow-2xs">
+                    ₹${parseAmountClean(c.amount).toLocaleString('en-IN')}
+                  </span>
+                </div>
               </div>
-              <h3 class="font-serif font-bold text-base text-[#1e2329] capitalize">${c.name}</h3>
-              <p class="text-xs text-[#5f6974] font-mono mt-0.5">📞 ${c.mobile} • ${c.city || 'Ajmer'}</p>
-              <div class="mt-2.5 p-2 rounded-xl bg-[#faf8f4] border text-xs flex justify-between">
-                <span class="font-bold text-[#1e2329] uppercase">💎 ${c.stoneName}</span>
-                <span class="text-[#6e7b87]">${c.stoneWeight || '-'}</span>
+
+              <!-- Customer Name & Details -->
+              <div class="min-w-0">
+                <h3 class="font-serif font-black text-base text-[#0f172a] capitalize truncate hover:text-[#845e1b] transition-colors" title="${c.name}">
+                  ${c.name}
+                </h3>
+                <div class="flex items-center gap-1.5 text-xs text-[#64748b] font-mono mt-0.5 truncate">
+                  <span class="truncate">📞 ${c.mobile || '-'}</span>
+                  <span>•</span>
+                  <span class="capitalize truncate text-[#475569] font-sans font-medium">${c.city || 'Ajmer'}</span>
+                </div>
               </div>
+              
+              <!-- Gemstone & Weight Details Box -->
+              <div class="p-2.5 rounded-xl bg-[#faf8f3] border border-[#e8dfcf] flex items-center justify-between gap-2">
+                <div class="flex items-center gap-1.5 min-w-0">
+                  <div class="w-6 h-6 rounded-lg bg-[#faedd2] text-[#845e1b] flex items-center justify-center shrink-0 text-xs">
+                    <i class="ph-fill ph-sketch-logo"></i>
+                  </div>
+                  <span class="font-bold text-xs text-[#0f172a] uppercase truncate" title="${c.stoneName}">
+                    ${c.stoneName}
+                  </span>
+                </div>
+                <span class="text-xs text-[#64748b] font-mono font-bold shrink-0 bg-white px-2 py-0.5 rounded border border-[#e2d9cc]">
+                  ${c.stoneWeight || '-'}
+                </span>
+              </div>
+
+              <!-- Reference Badge if present -->
+              ${c.reference ? `
+                <div class="text-[11px] text-[#64748b] flex items-center gap-1.5 font-medium bg-[#fcfaf5] px-2.5 py-1 rounded-lg border border-[#e2d9cc]/70 truncate">
+                  <i class="ph-fill ph-user-check text-[#166534] shrink-0 text-xs"></i>
+                  <span class="text-[#78716c] shrink-0">Ref:</span>
+                  <span class="capitalize font-bold text-[#0f172a] truncate">${c.reference}</span>
+                </div>
+              ` : ''}
             </div>
-            <div class="mt-3 pt-2 border-t flex justify-between items-center text-xs text-[#8a96a3]">
-              <span>${c.sellDate || '-'}</span>
-              <div class="flex gap-1" onclick="event.stopPropagation()">
-                <button onclick="sendCustomerWhatsApp('${c.custId}')" class="p-1 rounded bg-[#e4f4ee] text-[#11634b]" title="WhatsApp"><i class="ph-bold ph-whatsapp-logo text-sm"></i></button>
-                <button onclick="openSlipModal('${c.custId}')" class="p-1 rounded bg-[#faf6ee] text-[#8f681a]" title="Print Slip"><i class="ph-bold ph-printer text-sm"></i></button>
+            
+            <!-- Card Footer -->
+            <div class="mt-3.5 pt-2.5 border-t border-[#f1ebd8] flex items-center justify-between text-xs text-[#64748b]">
+              <span class="font-mono text-[11px] text-[#78716c] flex items-center gap-1">
+                <i class="ph ph-calendar text-xs"></i> ${c.sellDate || '-'}
+              </span>
+              <div class="flex items-center gap-1.5" onclick="event.stopPropagation()">
+                <button onclick="sendCustomerWhatsApp('${c.custId}')" class="p-1.5 rounded-lg bg-[#f0fdf4] hover:bg-[#dcfce7] text-[#166534] border border-[#bbf7d0] transition-all" title="WhatsApp Invoice">
+                  <i class="ph-bold ph-whatsapp-logo text-sm"></i>
+                </button>
+                <button onclick="openSlipModal('${c.custId}')" class="p-1.5 rounded-lg bg-[#faedd2] hover:bg-[#f5e2ba] text-[#845e1b] border border-[#ecd5a8] transition-all" title="Print Slip">
+                  <i class="ph-bold ph-printer text-sm"></i>
+                </button>
               </div>
             </div>
           </div>
@@ -632,10 +983,21 @@
       }).join('');
     }
 
+    // HELPER FUNCTION: CLEAN AMOUNT PARSING (PREVENTS NaN OR CONCATENATION BUGS)
+    function parseAmountClean(val) {
+      if (val === null || val === undefined) return 0;
+      const str = String(val).replace(/[^0-9]/g, '');
+      const parsed = parseInt(str, 10);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+
+    // SEAMLESS DOSSIER SWITCHING (NEVER CLOSES MODAL ACCIDENTALLY)
     function openDigitalCard(id) {
       const c = records.find(r => String(r.custId) === String(id));
       if (!c) return;
       currentDossierRecord = c;
+
+      const cleanAmt = parseAmountClean(c.amount);
 
       document.getElementById("dossierName").innerText = c.name;
       document.getElementById("dossierCustId").innerText = `#${c.custId}`;
@@ -643,37 +1005,52 @@
       document.getElementById("dossierMotherName").innerText = c.motherName || 'Not recorded';
       document.getElementById("dossierStoneName").innerText = c.stoneName;
       document.getElementById("dossierStoneWeight").innerText = c.stoneWeight || '-';
-      document.getElementById("dossierAmount").innerText = `₹${(parseInt(c.amount) || 0).toLocaleString('en-IN')}`;
+      document.getElementById("dossierAmount").innerText = `₹${cleanAmt.toLocaleString('en-IN')}`;
       document.getElementById("dossierLocation").innerText = `${c.city || '-'}, ${c.state || ''}`;
+      document.getElementById("dossierComments").innerText = c.comments || 'No remarks recorded.';
+
+      const refVal = c.reference || 'None';
+      document.getElementById("dossierReference").innerText = refVal;
+      document.getElementById("dossierRefBadge").innerText = refVal;
 
       const isPost = (c.sellPost || '').toLowerCase() === 'post';
       document.getElementById("dossierChannelBadge").innerText = isPost ? 'Postal Dispatch' : 'Counter Sale';
 
+      // Load all purchases made by this customer
       const history = records.filter(r => 
-        (c.mobile && r.mobile === c.mobile) || 
+        (c.mobile && r.mobile && r.mobile === c.mobile) || 
         (c.name && r.name && r.name.toLowerCase() === c.name.toLowerCase())
       );
 
       const histContainer = document.getElementById("purchaseHistoryContainer");
       const totalSpendEl = document.getElementById("totalCustomerSpend");
-      const totalSpend = history.reduce((acc, curr) => acc + (parseInt(curr.amount) || 0), 0);
+      
+      // Clean Integer Sum calculation
+      const totalSpend = history.reduce((acc, curr) => acc + parseAmountClean(curr.amount), 0);
+
       totalSpendEl.innerText = `Total Lifetime: ₹${totalSpend.toLocaleString('en-IN')} (${history.length} purchases)`;
 
-      histContainer.innerHTML = history.map(h => `
-        <div class="flex items-center justify-between p-2 rounded-xl border text-xs ${h.custId === c.custId ? 'bg-[#faedd2] border-[#c59a3f]' : 'bg-[#faf8f4] border-[#e5dcce]'}">
-          <div>
-            <span class="font-mono font-bold text-[#8f681a]">#${h.custId}</span>
-            <span class="font-bold text-[#1e2329] uppercase ml-1">${h.stoneName}</span>
-            <span class="text-[#6e7b87]">(${h.stoneWeight || '-'})</span>
-            <span class="text-[10px] text-[#8a96a3] block font-mono">Date: ${h.sellDate || '-'}</span>
+      histContainer.innerHTML = history.map(h => {
+        const itemAmt = parseAmountClean(h.amount);
+        return `
+          <div onclick="openDigitalCard('${h.custId}')" class="flex items-center justify-between p-2 rounded-xl border text-xs cursor-pointer transition-all ${String(h.custId) === String(c.custId) ? 'bg-[#faedd2] border-[#d6a34a] font-semibold' : 'bg-white border-[#e2d9cc] hover:bg-[#faedd2]/40'}">
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold ${String(h.custId) === String(c.custId) ? 'text-[#845e1b]' : 'text-[#64748b]'}">#${h.custId}</span>
+              <div>
+                <span class="font-bold text-[#0f172a] uppercase">${h.stoneName}</span>
+                <span class="text-[#64748b]">(${h.stoneWeight || '-'})</span>
+                <span class="text-[10px] text-[#64748b] block font-mono">Date: ${h.sellDate || '-'} • Ref: ${h.reference || '-'}</span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-bold font-mono text-[#166534]">₹${itemAmt.toLocaleString('en-IN')}</span>
+              <span class="text-[10px] text-[#845e1b] block font-semibold">Switch ➔</span>
+            </div>
           </div>
-          <div class="text-right">
-            <span class="font-bold font-mono text-[#11634b]">₹${h.amount}</span>
-            <span class="text-[10px] text-[#8a96a3] block uppercase">${h.sellPost || 'sell'}</span>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
+      // Check Family/Group Linking
       const famSection = document.getElementById("familyLinkingSection");
       const famList = document.getElementById("familyMembersList");
       const matchFam = (c.comments || '').match(/\d{4}/g);
@@ -684,7 +1061,7 @@
           const linkedC = records.find(r => String(r.custId) === String(linkedId));
           const name = linkedC ? linkedC.name : `ID #${linkedId}`;
           return `
-            <button onclick="openDigitalCard('${linkedId}')" class="px-2.5 py-1 rounded-lg bg-[#faedd2] border border-[#d4af37] text-[#8f681a] font-bold text-xs flex items-center gap-1 hover:brightness-95">
+            <button onclick="openDigitalCard('${linkedId}')" class="px-2.5 py-1 rounded-lg bg-[#faedd2] border border-[#d6a34a] text-[#845e1b] font-bold text-xs flex items-center gap-1 hover:brightness-95">
               <span>👤 #${linkedId} (${name})</span>
             </button>
           `;
@@ -693,7 +1070,54 @@
         famSection.classList.add("hidden");
       }
 
-      toggleModal('digitalCardModal');
+      openModal('digitalCardModal');
+    }
+
+    function editCurrentDossierRecord() {
+      if (!currentDossierRecord) return;
+      const c = currentDossierRecord;
+      closeModal('digitalCardModal');
+
+      document.getElementById("formMode").value = "edit";
+      document.getElementById("originalCustId").value = c.custId;
+      document.getElementById("modalFormTitle").innerText = `Edit Customer Record #${c.custId}`;
+      document.getElementById("customerFoundAlert").classList.add("hidden");
+
+      document.getElementById("inpCustId").value = c.custId;
+      document.getElementById("inpMobile").value = c.mobile || '';
+      document.getElementById("inpName").value = c.name || '';
+      document.getElementById("inpMotherName").value = c.motherName || '';
+      document.getElementById("inpDob").value = c.dob || '';
+      document.getElementById("inpStoneName").value = c.stoneName || '';
+      document.getElementById("inpStoneWeight").value = c.stoneWeight || '';
+      document.getElementById("inpCertNo").value = c.certificateNo || '';
+      document.getElementById("inpAmount").value = c.amount || '';
+      document.getElementById("inpSellPost").value = c.sellPost || 'sell';
+      document.getElementById("inpPayment").value = c.payment || 'cash';
+      document.getElementById("inpReference").value = c.reference || '';
+      document.getElementById("inpCity").value = c.city || '';
+      document.getElementById("inpState").value = c.state || '';
+      document.getElementById("inpComments").value = c.comments || '';
+
+      openModal('customerModal');
+    }
+
+    function triggerNewPurchaseFromDossier() {
+      if (!currentDossierRecord) return;
+      const c = currentDossierRecord;
+      closeModal('digitalCardModal');
+
+      openAddCustomerModal();
+      document.getElementById("inpMobile").value = c.mobile || '';
+      document.getElementById("inpName").value = c.name || '';
+      document.getElementById("inpMotherName").value = c.motherName || '';
+      document.getElementById("inpDob").value = c.dob || '';
+      document.getElementById("inpReference").value = c.reference || '';
+      document.getElementById("inpCity").value = c.city || '';
+      document.getElementById("inpState").value = c.state || '';
+      document.getElementById("inpComments").value = `id no ${c.custId} ke sath`;
+      
+      showToast(`Auto-filled for ${c.name}! Add new stone.`);
     }
 
     function checkExistingCustomer() {
@@ -709,6 +1133,7 @@
         document.getElementById("inpName").value = match.name || '';
         document.getElementById("inpMotherName").value = match.motherName || '';
         document.getElementById("inpDob").value = match.dob || '';
+        document.getElementById("inpReference").value = match.reference || '';
         document.getElementById("inpCity").value = match.city || '';
         document.getElementById("inpState").value = match.state || '';
 
@@ -718,23 +1143,6 @@
       } else {
         alertBox.classList.add("hidden");
       }
-    }
-
-    function triggerNewPurchaseFromDossier() {
-      if (!currentDossierRecord) return;
-      const c = currentDossierRecord;
-      toggleModal('digitalCardModal');
-
-      openAddCustomerModal();
-      document.getElementById("inpMobile").value = c.mobile || '';
-      document.getElementById("inpName").value = c.name || '';
-      document.getElementById("inpMotherName").value = c.motherName || '';
-      document.getElementById("inpDob").value = c.dob || '';
-      document.getElementById("inpCity").value = c.city || '';
-      document.getElementById("inpState").value = c.state || '';
-      document.getElementById("inpComments").value = `Linked with Cust #${c.custId}`;
-      
-      showToast(`Auto-filled details for ${c.name}!`);
     }
 
     function prevPage() {
@@ -756,7 +1164,7 @@
 
     function handleUniversalBack() {
       ['digitalCardModal', 'customerModal', 'slipModal'].forEach(id => {
-        document.getElementById(id).classList.add("hidden");
+        closeModal(id);
       });
       document.getElementById("searchInput").value = "";
       document.getElementById("stoneFilter").value = "";
@@ -788,7 +1196,7 @@
 
           label.innerText = "Sheet Synced";
           light.className = "w-2.5 h-2.5 rounded-full bg-[#11634b]";
-          showToast(`Synced ${records.length} records from Google Sheet!`);
+          showToast(`Synced ${records.length} records!`);
         }
       } catch (e) {
         label.innerText = "Sheet Connected (Local)";
@@ -798,8 +1206,6 @@
 
     function updateKpis() {
       document.getElementById("kpiTotalCustomers").innerText = records.length;
-      const rev = records.reduce((acc, c) => acc + (parseInt(c.amount) || 0), 0);
-      document.getElementById("kpiTotalRevenue").innerText = "₹" + rev.toLocaleString('en-IN');
       document.getElementById("kpiPostalCount").innerText = records.filter(r => (r.sellPost || '').toLowerCase() === 'post').length;
       document.getElementById("kpiCertCount").innerText = records.filter(r => r.certificateNo && r.certificateNo !== '-').length;
     }
@@ -820,17 +1226,24 @@
     function openAddCustomerModal() {
       document.getElementById("customerForm").reset();
       document.getElementById("formMode").value = "add";
+      document.getElementById("originalCustId").value = "";
+      document.getElementById("modalFormTitle").innerText = "Customer Entry";
       document.getElementById("customerFoundAlert").classList.add("hidden");
       
       const ids = records.map(r => parseInt(r.custId)).filter(n => !isNaN(n));
       document.getElementById("inpCustId").value = (ids.length ? Math.max(...ids) : 1700) + 1;
-      toggleModal('customerModal');
+      document.getElementById("inpReference").value = "javed bhai";
+      openModal('customerModal');
     }
 
     function handleFormSubmit(e) {
       e.preventDefault();
+      const mode = document.getElementById("formMode").value;
+      const originalCustId = document.getElementById("originalCustId").value;
+      const userEnteredId = document.getElementById("inpCustId").value.trim();
+
       const payload = {
-        custId: document.getElementById("inpCustId").value.trim(),
+        custId: userEnteredId,
         name: document.getElementById("inpName").value.trim().toLowerCase(),
         mobile: document.getElementById("inpMobile").value.trim(),
         motherName: document.getElementById("inpMotherName").value.trim().toLowerCase(),
@@ -838,25 +1251,35 @@
         stoneName: document.getElementById("inpStoneName").value.trim().toLowerCase(),
         stoneWeight: document.getElementById("inpStoneWeight").value.trim(),
         certificateNo: document.getElementById("inpCertNo").value.trim() || "-",
-        amount: parseInt(document.getElementById("inpAmount").value) || 0,
+        amount: parseAmountClean(document.getElementById("inpAmount").value),
         sellPost: document.getElementById("inpSellPost").value,
         payment: document.getElementById("inpPayment").value,
-        reference: "Haji Jawed Faridi",
+        reference: document.getElementById("inpReference").value.trim().toLowerCase() || "javed bhai",
         sellDate: new Date().toLocaleDateString('en-GB'),
         city: document.getElementById("inpCity").value.trim().toLowerCase(),
         state: document.getElementById("inpState").value.trim().toLowerCase(),
         comments: document.getElementById("inpComments").value.trim()
       };
 
-      records.unshift(payload);
+      if (mode === 'edit') {
+        const idx = records.findIndex(r => String(r.custId) === String(originalCustId));
+        if (idx !== -1) {
+          records[idx] = payload;
+          showToast(`Updated Cust ID #${payload.custId}`);
+        }
+      } else {
+        records.unshift(payload);
+        showToast(`Saved Cust ID #${payload.custId}`);
+        playSuccessChime();
+      }
+
       saveData();
       generate100IdBatchOptions();
       updateKpis();
       applyFilterAndRender();
-      toggleModal('customerModal');
-      showToast(`Saved Cust ID #${payload.custId}`);
+      closeModal('customerModal');
 
-      // Google Sheet mein write karega
+      // Google Sheet Sync
       fetch(activeWebhookUrl, {
         method: "POST",
         mode: "no-cors",
@@ -870,15 +1293,80 @@
       if (!c) return;
       activeSlipRecord = c;
 
+      const cleanAmt = parseAmountClean(c.amount);
+
+      // Populate A4 Royal Certificate View
       document.getElementById("slipId").innerText = `#${c.custId}`;
+      document.getElementById("slipDate").innerText = `Date: ${c.sellDate || new Date().toLocaleDateString('en-GB')}`;
       document.getElementById("slipName").innerText = c.name;
+      document.getElementById("slipMobile").innerText = c.mobile || 'No contact';
+      document.getElementById("slipMother").innerText = c.motherName || 'Verified Alignment';
+      document.getElementById("slipCity").innerText = `${c.city || 'Ajmer'}${c.state ? ', ' + c.state : ''}`;
       document.getElementById("slipStone").innerText = c.stoneName;
       document.getElementById("slipWeight").innerText = c.stoneWeight || '-';
-      document.getElementById("slipAmount").innerText = c.amount;
-      document.getElementById("slipCity").innerText = c.city || '-';
-      document.getElementById("slipRemarks").innerText = c.comments || '-';
+      document.getElementById("slipCert").innerText = c.certificateNo && c.certificateNo !== '-' ? c.certificateNo : 'Standard Untreated';
+      document.getElementById("slipAmount").innerText = `₹${cleanAmt.toLocaleString('en-IN')}`;
+      document.getElementById("slipReference").innerText = c.reference || 'None';
+      document.getElementById("slipPayment").innerText = (c.payment || 'CASH').toUpperCase();
+      document.getElementById("slipRemarks").innerText = c.comments || 'Natural untreated certified stone for spiritual & astrological wear.';
+      document.getElementById("slipChannelBadge").innerText = c.sellPost === 'post' ? 'Postal / Courier' : 'Direct Store Sale';
 
-      toggleModal('slipModal');
+      // Populate Thermal 80mm View
+      document.getElementById("thSlipId").innerText = `#${c.custId}`;
+      document.getElementById("thSlipDate").innerText = c.sellDate || '-';
+      document.getElementById("thSlipName").innerText = c.name;
+      document.getElementById("thSlipMobile").innerText = c.mobile || '-';
+      document.getElementById("thSlipCity").innerText = c.city || '-';
+      document.getElementById("thSlipReference").innerText = c.reference || '-';
+      document.getElementById("thSlipStone").innerText = c.stoneName;
+      document.getElementById("thSlipWeight").innerText = c.stoneWeight || '-';
+      document.getElementById("thSlipCert").innerText = c.certificateNo || '-';
+      document.getElementById("thSlipPayment").innerText = (c.payment || 'CASH').toUpperCase();
+      document.getElementById("thSlipAmount").innerText = `₹${cleanAmt.toLocaleString('en-IN')}`;
+
+      // Generate Dynamic Verification QR Code
+      const qrEl = document.getElementById("slipQrContainer");
+      if (qrEl) {
+        qrEl.innerHTML = "";
+        try {
+          new QRCode(qrEl, {
+            text: `FARIDI STONES AJMER | PROP: HAJI JAWED FARIDI | ID: #${c.custId} | CUST: ${c.name.toUpperCase()} | STONE: ${c.stoneName.toUpperCase()} | AMT: Rs.${cleanAmt} | PHONE: +91 9352937928`,
+            width: 58,
+            height: 58,
+            colorDark: "#15110d",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        } catch (e) {
+          console.warn("QR Error:", e);
+        }
+      }
+
+      openModal('slipModal');
+    }
+
+    function toggleSlipFormat() {
+      const a4 = document.getElementById("royalA4View");
+      const th = document.getElementById("thermalView");
+      const btnText = document.getElementById("formatToggleText");
+
+      if (currentSlipFormat === 'a4') {
+        currentSlipFormat = 'thermal';
+        a4.classList.add("hidden");
+        th.classList.remove("hidden");
+        btnText.innerText = "A4 Royal Certificate";
+      } else {
+        currentSlipFormat = 'a4';
+        th.classList.add("hidden");
+        a4.classList.remove("hidden");
+        btnText.innerText = "Thermal 80mm";
+      }
+    }
+
+    function sendSlipWhatsApp() {
+      if (activeSlipRecord) {
+        sendCustomerWhatsApp(activeSlipRecord.custId);
+      }
     }
 
     function sendCustomerWhatsApp(id) {
@@ -887,7 +1375,26 @@
       let ph = (c.mobile || '').replace(/\D/g, '');
       if (ph.length === 10) ph = '91' + ph;
 
-      const msg = `*FARIDI STONES AJMER*\nProp: Haji Jawed Faridi\nSalam ${c.name.toUpperCase()} ji,\nCust ID: #${c.custId}\nGemstone: ${c.stoneName} (${c.stoneWeight})\nTotal: ₹${c.amount}\nHelpline: +91 9352937928`;
+      const msg = `*FARIDI STONES • AJMER SHARIF*
+_Specialist in Untreated Astrological Gemstones_
+*Proprietor: Haji Jawed Faridi*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Assalam-o-Alaikum / Greetings *${(c.name || '').toUpperCase()}* ji!
+
+Your authentic gemstone bill receipt has been recorded:
+• *Cust ID:* #${c.custId}
+• *Gemstone:* ${(c.stoneName || '').toUpperCase()} (${c.stoneWeight || 'Verified weight'})
+• *Certificate:* ${c.certificateNo && c.certificateNo !== '-' ? c.certificateNo : 'Natural Untreated'}
+• *Mother's Name:* ${c.motherName || 'Verified for alignment'}
+• *Billed Amount:* ₹${(parseInt(c.amount) || 0).toLocaleString('en-IN')}
+• *Reference:* ${c.reference || 'None'}
+• *Channel:* ${c.sellPost === 'post' ? 'Postal Courier' : 'Direct Store Counter'}
+• *Date:* ${c.sellDate || new Date().toLocaleDateString('en-GB')}
+${c.comments ? `• *Remarks:* ${c.comments}\n` : ''}
+*Faridi Stones (Proprietor: Haji Jawed Faridi)*
+Near Panjatan Guest House, Panni Gram Chowk, Dargah Sharif, Ajmer
+Helpline: +91 9352937928`;
+
       window.open(`https://wa.me/${ph}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -897,7 +1404,7 @@
 
     function openSlipFromDossier() {
       if (currentDossierRecord) {
-        toggleModal('digitalCardModal');
+        closeModal('digitalCardModal');
         openSlipModal(currentDossierRecord.custId);
       }
     }
@@ -911,8 +1418,14 @@
       applyFilterAndRender();
     }
 
-    function toggleModal(id) {
-      document.getElementById(id).classList.toggle("hidden");
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("hidden");
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add("hidden");
     }
 
     function showToast(msg) {
