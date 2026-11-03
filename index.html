@@ -53,7 +53,6 @@
       overflow-x: hidden;
     }
 
-    /* Top Moving Animated Ticker */
     .moving-banner-bar {
       background: linear-gradient(90deg, #18140f 0%, #352611 50%, #18140f 100%);
       border-bottom: 2px solid #b88a38;
@@ -305,7 +304,7 @@
 
   </main>
 
-  <!-- ADD / EDIT CUSTOMER MODAL (MOBILE TOP CROP FIXED + 5 REFERENCE OPTIONS) -->
+  <!-- ADD / EDIT CUSTOMER MODAL (WITH MANUAL DATE & LINKED ID) -->
   <div id="customerModal" class="fixed inset-0 bg-[#1e2329]/75 backdrop-blur-sm z-50 hidden flex items-start justify-center p-3 sm:p-5 overflow-y-auto pt-6 pb-12">
     <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-auto shadow-2xl p-5 sm:p-6 relative">
       <div class="flex justify-between items-center pb-3 border-b mb-3">
@@ -322,7 +321,7 @@
       <div id="customerFoundAlert" class="hidden p-2.5 mb-3 bg-[#e4f4ee] border border-[#11634b]/40 rounded-xl text-xs text-[#11634b] flex items-center justify-between">
         <div class="flex items-center gap-1.5 font-bold">
           <i class="ph-fill ph-check-circle text-base"></i>
-          <span id="customerFoundText">Existing Customer Detected! Details auto-filled.</span>
+          <span id="customerFoundText">Existing Customer Detected via Mobile No! Details auto-filled.</span>
         </div>
         <span class="text-[10px] bg-white px-2 py-0.5 rounded font-mono font-bold text-[#8f681a]" id="prevPurchasesBadge"></span>
       </div>
@@ -331,22 +330,28 @@
         <input type="hidden" id="formMode" value="add">
         <input type="hidden" id="originalCustId" value="">
 
+        <!-- ROW 1: Cust ID, Selling Date (Manual), Mobile No -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Cust ID (Manual) *</label>
             <input type="text" id="inpCustId" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border border-[#c59a3f] font-mono font-bold text-[#8f681a] outline-none">
           </div>
           <div>
+            <label class="block font-bold text-[#424d57] mb-1">Selling Date (Manual) *</label>
+            <input type="date" id="inpSellDate" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border border-[#c59a3f] font-mono font-bold text-[#1e2329] outline-none">
+          </div>
+          <div>
             <label class="block font-bold text-[#424d57] mb-1">Mobile No *</label>
             <input type="tel" id="inpMobile" oninput="checkExistingCustomer()" required placeholder="10-digit mobile" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none font-mono">
           </div>
+        </div>
+
+        <!-- ROW 2: Customer Name, Mother Name, DOB -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Customer Name *</label>
             <input type="text" id="inpName" required class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
           </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Mother Name</label>
             <input type="text" id="inpMotherName" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
@@ -357,6 +362,7 @@
           </div>
         </div>
 
+        <!-- ROW 3: Stone Name, Weight, Certificate, Amount -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Stone Name *</label>
@@ -376,7 +382,7 @@
           </div>
         </div>
 
-        <!-- DROPDOWNS: CHANNEL, PAYMENT, 5 REFERENCE OPTIONS -->
+        <!-- ROW 4: Channel, Payment, Reference -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
             <label class="block font-bold text-[#424d57] mb-1">Channel (Sell / Post)</label>
@@ -405,7 +411,12 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- ROW 5: Linked Cust ID, City, State -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-bold text-[#424d57] mb-1">Linked Cust ID (Saath Aaye Log)</label>
+            <input type="text" id="inpLinkedId" placeholder="e.g. 6272" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border border-[#d5c8ad] font-mono outline-none">
+          </div>
           <div>
             <label class="block font-bold text-[#424d57] mb-1">City</label>
             <input type="text" id="inpCity" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none capitalize">
@@ -417,8 +428,8 @@
         </div>
 
         <div>
-          <label class="block font-bold text-[#424d57] mb-1">Comments / Family Notes</label>
-          <input type="text" id="inpComments" placeholder="e.g. id no 1700 ke sath, ring with chandi" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
+          <label class="block font-bold text-[#424d57] mb-1">Comments / Extra Notes</label>
+          <input type="text" id="inpComments" placeholder="e.g. ring with chandi, courier through speed post" class="w-full px-3 py-2 rounded-xl bg-[#faf8f4] border outline-none">
         </div>
 
         <div class="pt-3 border-t flex justify-end gap-2">
@@ -467,24 +478,26 @@
             <p class="text-[#8f681a] font-bold capitalize mt-0.5 truncate" id="dossierReference">-</p>
           </div>
           <div class="sm:col-span-2 p-2.5 bg-[#faf6ee] rounded-xl border border-[#ebd7b5]">
-            <span class="text-[10px] font-bold text-[#796c56] uppercase block">Comments:</span>
+            <span class="text-[10px] font-bold text-[#796c56] uppercase block">Comments / Notes:</span>
             <p class="text-[#272f37] italic font-medium mt-0.5 line-clamp-2" id="dossierComments">-</p>
           </div>
         </div>
 
+        <!-- SAATH AAYE LOG / LINKED GROUP -->
         <div id="familyLinkingSection" class="hidden p-2.5 bg-[#fdfaf3] border border-[#ebd7b5] rounded-xl text-xs space-y-1">
           <div class="flex items-center gap-1.5 text-[#8f681a] font-bold">
             <i class="ph-fill ph-users-three text-sm"></i>
-            <span>Linked Family / Group Members:</span>
+            <span>Saath Aaye Log (Linked Group):</span>
           </div>
           <div id="familyMembersList" class="flex flex-wrap gap-1.5 pt-0.5"></div>
         </div>
 
+        <!-- STRICT MOBILE-MATCHED HISTORY CONTAINER -->
         <div class="border-t border-[#ede4d4] pt-2.5">
           <div class="flex items-center justify-between mb-1.5">
             <span class="text-xs font-bold uppercase tracking-wider text-[#796c56] flex items-center gap-1">
               <i class="ph-bold ph-clock-counter-clockwise"></i> Customer Purchase History
-              <span class="text-[10px] text-[#8a96a3] font-normal hidden sm:inline">(Click any order to view)</span>
+              <span class="text-[10px] text-[#8a96a3] font-normal hidden sm:inline">(Linked by Mobile No)</span>
             </span>
             <span class="text-[11px] font-mono text-[#8f681a] font-bold" id="totalCustomerSpend">-</span>
           </div>
@@ -500,6 +513,10 @@
 
         <button onclick="triggerNewPurchaseFromDossier()" class="flex-1 py-2 bg-gradient-to-r from-[#c59a3f] to-[#a67c1e] text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1 hover:brightness-105 transition-all">
           <i class="ph-bold ph-plus-circle"></i> + Add New
+        </button>
+
+        <button onclick="triggerAddSaathiFromDossier()" class="py-2 px-3 bg-[#faedd2] border border-[#d6a34a] text-[#845e1b] rounded-xl text-xs font-bold flex items-center gap-1 hover:bg-[#f5e2ba] transition-all" title="Add another person in same group">
+          <i class="ph-bold ph-users-plus"></i> + Saathi
         </button>
 
         <button onclick="sendActiveDossierWhatsApp()" class="py-2 px-3.5 bg-[#11634b] text-white rounded-xl text-xs font-bold flex items-center gap-1 hover:bg-[#0c4e3a] transition-all">
@@ -716,7 +733,31 @@
     let currentPage = 1;
     let searchTimer = null;
 
-    // AUDIO CHIME SYNTHESIZER (MOBILE UNLOCKED)
+    // Helper: Date format parser to YYYY-MM-DD for HTML input[type="date"]
+    function toInputDateFormat(dateStr) {
+      if (!dateStr) return new Date().toISOString().split('T')[0];
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return dateStr;
+      
+      const parts = dateStr.split(/[\/\-]/);
+      if (parts.length === 3) {
+        if (parts[2].length === 4) {
+          return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+        }
+      }
+      return new Date().toISOString().split('T')[0];
+    }
+
+    // Helper: Format YYYY-MM-DD back to DD/MM/YYYY for Google Sheet
+    function toDisplayDateFormat(dateStr) {
+      if (!dateStr) return new Date().toLocaleDateString('en-GB');
+      if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+        const [y, m, d] = dateStr.split('-');
+        return `${d}/${m}/${y}`;
+      }
+      return dateStr;
+    }
+
+    // AUDIO CHIME SYNTHESIZER
     let audioCtx = null;
     function playSuccessChime() {
       if (!isSoundEnabled) return;
@@ -897,7 +938,8 @@
       const pageData = filteredRecords.slice(start, end);
 
       container.innerHTML = pageData.map(c => {
-        const count = records.filter(r => (r.mobile && r.mobile === c.mobile) || (r.name && r.name.toLowerCase() === c.name.toLowerCase())).length;
+        // STRICT MOBILE MATCH FOR ORDERS COUNT
+        const count = records.filter(r => c.mobile && r.mobile && r.mobile.trim() === c.mobile.trim()).length;
         const hasHistory = count > 1;
 
         return `
@@ -976,6 +1018,7 @@
       return isNaN(parsed) ? 0 : parsed;
     }
 
+    // STRICT MOBILE-NUMBER BASED DOSSIER HISTORY
     function openDigitalCard(id) {
       const c = records.find(r => String(r.custId) === String(id));
       if (!c) return;
@@ -985,7 +1028,7 @@
 
       document.getElementById("dossierName").innerText = c.name;
       document.getElementById("dossierCustId").innerText = `#${c.custId}`;
-      document.getElementById("dossierMobile").innerText = c.mobile;
+      document.getElementById("dossierMobile").innerText = c.mobile || 'No Mobile';
       document.getElementById("dossierMotherName").innerText = c.motherName || 'Not recorded';
       document.getElementById("dossierStoneName").innerText = c.stoneName;
       document.getElementById("dossierStoneWeight").innerText = c.stoneWeight || '-';
@@ -1000,16 +1043,17 @@
       const isPost = (c.sellPost || '').toLowerCase() === 'post';
       document.getElementById("dossierChannelBadge").innerText = isPost ? 'Postal Dispatch' : 'Counter Sale';
 
-      const history = records.filter(r => 
-        (c.mobile && r.mobile === c.mobile) || 
-        (c.name && r.name && r.name.toLowerCase() === c.name.toLowerCase())
-      );
+      // STRICT MOBILE CHECK: Only link if mobile exists and matches exactly
+      const hasValidMobile = c.mobile && c.mobile.trim().length >= 8;
+      const history = hasValidMobile
+        ? records.filter(r => r.mobile && r.mobile.trim() === c.mobile.trim())
+        : [c];
 
       const histContainer = document.getElementById("purchaseHistoryContainer");
       const totalSpendEl = document.getElementById("totalCustomerSpend");
       
       const totalSpend = history.reduce((acc, curr) => acc + parseAmountClean(curr.amount), 0);
-      totalSpendEl.innerText = `Total Lifetime: ₹${totalSpend.toLocaleString('en-IN')} (${history.length} purchases)`;
+      totalSpendEl.innerText = `Total: ₹${totalSpend.toLocaleString('en-IN')} (${history.length} purchases)`;
 
       histContainer.innerHTML = history.map(h => {
         const itemAmt = parseAmountClean(h.amount);
@@ -1031,13 +1075,36 @@
         `;
       }).join('');
 
+      // CHECK SAATH AAYE LOG / GROUP LINKING (Supports Dedicated Linked ID & Comments)
       const famSection = document.getElementById("familyLinkingSection");
       const famList = document.getElementById("familyMembersList");
+      
+      // Match 4-digit numbers from comments or linkedId
+      const foundIds = new Set();
+      if (c.linkedId && /^\d+$/.test(c.linkedId.trim())) {
+        foundIds.add(c.linkedId.trim());
+      }
       const matchFam = (c.comments || '').match(/\d{4}/g);
+      if (matchFam) {
+        matchFam.forEach(idNum => foundIds.add(idNum));
+      }
 
-      if (matchFam && matchFam.length) {
+      // Also check if other records have linked to THIS customer's ID
+      records.forEach(r => {
+        if (r.custId !== c.custId) {
+          if (r.linkedId && String(r.linkedId).trim() === String(c.custId).trim()) {
+            foundIds.add(String(r.custId));
+          } else if (r.comments && r.comments.includes(c.custId)) {
+            foundIds.add(String(r.custId));
+          }
+        }
+      });
+
+      foundIds.delete(String(c.custId)); // Don't show self
+
+      if (foundIds.size > 0) {
         famSection.classList.remove("hidden");
-        famList.innerHTML = matchFam.map(linkedId => {
+        famList.innerHTML = Array.from(foundIds).map(linkedId => {
           const linkedC = records.find(r => String(r.custId) === String(linkedId));
           const name = linkedC ? linkedC.name : `ID #${linkedId}`;
           return `
@@ -1064,6 +1131,7 @@
       document.getElementById("customerFoundAlert").classList.add("hidden");
 
       document.getElementById("inpCustId").value = c.custId;
+      document.getElementById("inpSellDate").value = toInputDateFormat(c.sellDate);
       document.getElementById("inpMobile").value = c.mobile || '';
       document.getElementById("inpName").value = c.name || '';
       document.getElementById("inpMotherName").value = c.motherName || '';
@@ -1079,6 +1147,7 @@
       const refSelect = document.getElementById("inpReference");
       refSelect.value = Array.from(refSelect.options).some(o => o.value.toLowerCase() === refVal.toLowerCase()) ? refVal : 'jawed bhai';
 
+      document.getElementById("inpLinkedId").value = c.linkedId || '';
       document.getElementById("inpCity").value = c.city || '';
       document.getElementById("inpState").value = c.state || '';
       document.getElementById("inpComments").value = c.comments || '';
@@ -1086,6 +1155,7 @@
       openModal('customerModal');
     }
 
+    // Trigger New Purchase for Same Customer (Retains Details)
     function triggerNewPurchaseFromDossier() {
       if (!currentDossierRecord) return;
       const c = currentDossierRecord;
@@ -1103,20 +1173,38 @@
 
       document.getElementById("inpCity").value = c.city || '';
       document.getElementById("inpState").value = c.state || '';
-      document.getElementById("inpComments").value = `id no ${c.custId} ke sath`;
+      document.getElementById("inpLinkedId").value = c.custId;
       
       showToast(`Auto-filled for ${c.name}! Add new stone.`);
     }
 
+    // Trigger Add Saathi (New Group Member - Clears Personal Details, Sets Linked ID)
+    function triggerAddSaathiFromDossier() {
+      if (!currentDossierRecord) return;
+      const c = currentDossierRecord;
+      closeModal('digitalCardModal');
+
+      openAddCustomerModal();
+      document.getElementById("inpLinkedId").value = c.custId;
+      document.getElementById("inpCity").value = c.city || '';
+      document.getElementById("inpState").value = c.state || '';
+      document.getElementById("inpComments").value = `Saath aaye: ID #${c.custId} (${c.name})`;
+      
+      showToast(`Linked to #${c.custId}! Enter Saathi's mobile & name.`);
+    }
+
+    // STRICT AUTO-FILL: Check ONLY on mobile number match (Minimum 8 digits)
     function checkExistingCustomer() {
       const mob = document.getElementById("inpMobile").value.trim();
       const alertBox = document.getElementById("customerFoundAlert");
-      if (mob.length < 5) {
+      
+      if (mob.length < 8) {
         alertBox.classList.add("hidden");
         return;
       }
 
-      const match = records.find(r => r.mobile && r.mobile.includes(mob));
+      // STRICT MOBILE MATCH ONLY
+      const match = records.find(r => r.mobile && r.mobile.trim() === mob);
       if (match && document.getElementById("formMode").value === "add") {
         document.getElementById("inpName").value = match.name || '';
         document.getElementById("inpMotherName").value = match.motherName || '';
@@ -1129,7 +1217,7 @@
         document.getElementById("inpCity").value = match.city || '';
         document.getElementById("inpState").value = match.state || '';
 
-        const totalTimes = records.filter(r => r.mobile === match.mobile).length;
+        const totalTimes = records.filter(r => r.mobile && r.mobile.trim() === mob).length;
         document.getElementById("prevPurchasesBadge").innerText = `${totalTimes} Previous Purchases`;
         alertBox.classList.remove("hidden");
       } else {
@@ -1224,9 +1312,12 @@
       
       const ids = records.map(r => parseInt(r.custId)).filter(n => !isNaN(n));
       document.getElementById("inpCustId").value = (ids.length ? Math.max(...ids) : 1700) + 1;
+      
+      document.getElementById("inpSellDate").value = new Date().toISOString().split('T')[0];
       document.getElementById("inpSellPost").value = "sell";
       document.getElementById("inpPayment").value = "cash";
       document.getElementById("inpReference").value = "jawed bhai";
+      document.getElementById("inpLinkedId").value = "";
       openModal('customerModal');
     }
 
@@ -1235,6 +1326,7 @@
       const mode = document.getElementById("formMode").value;
       const originalCustId = document.getElementById("originalCustId").value;
       const userEnteredId = document.getElementById("inpCustId").value.trim();
+      const selectedSellDate = toDisplayDateFormat(document.getElementById("inpSellDate").value);
 
       const payload = {
         custId: userEnteredId,
@@ -1249,7 +1341,8 @@
         sellPost: document.getElementById("inpSellPost").value,
         payment: document.getElementById("inpPayment").value,
         reference: document.getElementById("inpReference").value,
-        sellDate: new Date().toLocaleDateString('en-GB'),
+        sellDate: selectedSellDate,
+        linkedId: document.getElementById("inpLinkedId").value.trim(),
         city: document.getElementById("inpCity").value.trim().toLowerCase(),
         state: document.getElementById("inpState").value.trim().toLowerCase(),
         comments: document.getElementById("inpComments").value.trim()
