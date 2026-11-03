@@ -123,11 +123,25 @@
       transform: translateY(-3px);
     }
 
+    /* Print & Modal Layout Fixes */
     @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm;
+      }
+      html, body {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
       body * { visibility: hidden !important; }
       #printContainer, #printContainer * { visibility: visible !important; }
       #printContainer {
-        position: fixed !important;
+        position: absolute !important;
         left: 0 !important;
         top: 0 !important;
         width: 100% !important;
@@ -135,6 +149,16 @@
         padding: 0 !important;
         background: white !important;
         display: block !important;
+      }
+      #royalA4View {
+        border: 1.5px solid #d4af37 !important;
+        box-shadow: none !important;
+        padding: 16px 20px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
       }
       .no-print { display: none !important; }
     }
@@ -304,7 +328,7 @@
 
   </main>
 
-  <!-- ADD / EDIT CUSTOMER MODAL (WITH MANUAL DATE & LINKED ID) -->
+  <!-- ADD / EDIT CUSTOMER MODAL -->
   <div id="customerModal" class="fixed inset-0 bg-[#1e2329]/75 backdrop-blur-sm z-50 hidden flex items-start justify-center p-3 sm:p-5 overflow-y-auto pt-6 pb-12">
     <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-auto shadow-2xl p-5 sm:p-6 relative">
       <div class="flex justify-between items-center pb-3 border-b mb-3">
@@ -530,11 +554,11 @@
     </div>
   </div>
 
-  <!-- SLIP MODAL -->
+  <!-- SLIP MODAL (FIXED SCREEN SIZING FOR DESKTOP & MOBILE) -->
   <div id="slipModal" class="fixed inset-0 bg-[#1e2329]/75 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
-    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-6 shadow-2xl overflow-hidden">
+    <div class="bg-white border-2 border-[#d4af37] rounded-3xl w-full max-w-2xl my-auto shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
       
-      <div class="flex flex-wrap justify-between items-center px-6 py-3.5 bg-gradient-to-r from-[#1c1712] via-[#2d2212] to-[#1c1712] text-white border-b border-[#d4af37] no-print gap-2">
+      <div class="flex flex-wrap justify-between items-center px-6 py-3.5 bg-gradient-to-r from-[#1c1712] via-[#2d2212] to-[#1c1712] text-white border-b border-[#d4af37] no-print gap-2 shrink-0">
         <div class="flex items-center space-x-2">
           <i class="ph-fill ph-seal-check text-[#d4af37] text-xl"></i>
           <div>
@@ -560,112 +584,112 @@
         </div>
       </div>
 
-      <div id="printContainer" class="p-4 sm:p-6 bg-[#f7f4ed]">
+      <div id="printContainer" class="p-3 sm:p-5 bg-[#f7f4ed] overflow-y-auto flex-1">
         
-        <!-- ROYAL A4 VIEW -->
-        <div id="royalA4View" class="royal-slip-container p-6 sm:p-8 rounded-2xl shadow-royal text-[#1e2329] relative overflow-hidden bg-white">
-          <div class="relative z-10 border-b-2 border-[#d4af37]/80 pb-4 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+        <!-- ROYAL A4 VIEW (COMPACT FIT, ZERO HEADER CUTTING) -->
+        <div id="royalA4View" class="royal-slip-container p-4 sm:p-6 rounded-2xl text-[#1e2329] relative overflow-hidden bg-white w-full mx-auto border border-[#d4af37]">
+          
+          <div class="relative z-10 border-b-2 border-[#d4af37]/80 pb-3 mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
             <div>
               <div class="flex items-center gap-2">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#faedd2] to-[#eedab4] border border-[#d4af37] flex items-center justify-center text-[#8f681a] shadow-xs">
-                  <i class="ph-fill ph-sketch-logo text-2xl"></i>
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#faedd2] to-[#eedab4] border border-[#d4af37] flex items-center justify-center text-[#8f681a] shrink-0">
+                  <i class="ph-fill ph-sketch-logo text-xl"></i>
                 </div>
                 <div>
-                  <h2 class="text-2xl font-black font-serif tracking-widest text-[#15110d] uppercase">FARIDI STONES</h2>
-                  <p class="text-[11px] font-bold text-[#8f681a] uppercase tracking-wider">Natural Certified Astrological Gemstones</p>
+                  <h2 class="text-xl sm:text-2xl font-black font-serif tracking-widest text-[#15110d] uppercase leading-tight">FARIDI STONES</h2>
+                  <p class="text-[10px] font-bold text-[#8f681a] uppercase tracking-wider">Natural Certified Astrological Gemstones</p>
                 </div>
               </div>
-              <p class="text-[11px] text-[#556778] mt-1.5">Near Panjatan Guest House, Panni Gram Chowk, Dargah Sharif, Ajmer (Raj.)</p>
-              <p class="text-[11px] font-mono text-[#556778]">
+              <p class="text-[10px] text-[#556778] mt-1 leading-tight">Near Panjatan Guest House, Panni Gram Chowk, Dargah Sharif, Ajmer (Raj.)</p>
+              <p class="text-[10px] font-mono text-[#556778]">
                 <strong>Proprietor: Haji Jawed Faridi</strong> • Phone: <a href="tel:9352937928" class="font-bold text-[#11634b]">+91 9352937928</a>
               </p>
             </div>
 
-            <div class="text-left sm:text-right w-full sm:w-auto border-t sm:border-t-0 pt-2 sm:pt-0 border-[#eedab4]">
-              <div class="inline-block bg-[#faedd2] border border-[#d4af37] px-3.5 py-1 rounded-xl font-mono font-black text-sm text-[#8f681a] shadow-xs" id="slipId">
+            <div class="text-left sm:text-right w-full sm:w-auto border-t sm:border-t-0 pt-1.5 sm:pt-0 border-[#eedab4] shrink-0">
+              <div class="inline-block bg-[#faedd2] border border-[#d4af37] px-3 py-0.5 rounded-lg font-mono font-black text-xs sm:text-sm text-[#8f681a]" id="slipId">
                 #0000
               </div>
-              <p class="text-[11px] font-mono text-[#556778] mt-1" id="slipDate">Date: -</p>
-              <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase mt-1 bg-[#e4f4ee] text-[#11634b] border border-[#b8e2d2]" id="slipChannelBadge">Counter Sale</span>
+              <p class="text-[10px] font-mono text-[#556778] mt-0.5" id="slipDate">Date: -</p>
+              <span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-bold uppercase mt-0.5 bg-[#e4f4ee] text-[#11634b] border border-[#b8e2d2]" id="slipChannelBadge">Counter Sale</span>
             </div>
           </div>
 
-          <div class="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2.5 bg-gradient-to-br from-[#fcfaf5] to-[#f6efe1] p-3.5 rounded-2xl border border-[#e5dcce] text-xs mb-4">
+          <div class="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-2 bg-[#faf8f4] p-2.5 rounded-xl border border-[#e5dcce] text-xs mb-3">
             <div>
-              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Customer Name:</span>
-              <span class="font-bold font-serif text-sm text-[#1e2329] capitalize block mt-0.5" id="slipName">-</span>
+              <span class="text-[9px] uppercase font-bold text-[#796c56] block">Customer Name:</span>
+              <span class="font-bold font-serif text-xs sm:text-sm text-[#1e2329] capitalize block truncate" id="slipName">-</span>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Contact Number:</span>
-              <span class="font-mono font-bold text-xs text-[#1e2329] block mt-0.5" id="slipMobile">-</span>
+              <span class="text-[9px] uppercase font-bold text-[#796c56] block">Contact Number:</span>
+              <span class="font-mono font-bold text-xs text-[#1e2329] block truncate" id="slipMobile">-</span>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-bold text-[#796c56] block">Mother's Name:</span>
-              <span class="font-semibold text-xs text-[#424d57] capitalize block mt-0.5" id="slipMother">-</span>
+              <span class="text-[9px] uppercase font-bold text-[#796c56] block">Mother's Name:</span>
+              <span class="font-semibold text-xs text-[#424d57] capitalize block truncate" id="slipMother">-</span>
             </div>
             <div>
-              <span class="text-[10px] uppercase font-bold text-[#796c56] block">City &amp; State:</span>
-              <span class="font-semibold text-xs text-[#424d57] capitalize block mt-0.5" id="slipCity">-</span>
+              <span class="text-[9px] uppercase font-bold text-[#796c56] block">City &amp; State:</span>
+              <span class="font-semibold text-xs text-[#424d57] capitalize block truncate" id="slipCity">-</span>
             </div>
           </div>
 
-          <div class="relative z-10 overflow-hidden rounded-xl border border-[#d4af37]/60 mb-4 bg-white">
+          <div class="relative z-10 overflow-hidden rounded-xl border border-[#d4af37]/60 mb-3 bg-white">
             <table class="w-full text-xs">
               <thead class="bg-gradient-to-r from-[#faedd2] via-[#f7e6c4] to-[#faedd2] text-[#8f681a] font-serif font-bold border-b border-[#d4af37]/60">
                 <tr>
-                  <th class="p-2.5 text-left uppercase tracking-wider">Gemstone Description</th>
-                  <th class="p-2.5 text-center uppercase tracking-wider">Weight (S.Wgt)</th>
-                  <th class="p-2.5 text-center uppercase tracking-wider">Lab Certificate</th>
-                  <th class="p-2.5 text-right uppercase tracking-wider">Amount (INR)</th>
+                  <th class="p-2 text-left uppercase tracking-wider text-[10px]">Gemstone Description</th>
+                  <th class="p-2 text-center uppercase tracking-wider text-[10px]">Weight</th>
+                  <th class="p-2 text-center uppercase tracking-wider text-[10px]">Certificate</th>
+                  <th class="p-2 text-right uppercase tracking-wider text-[10px]">Amount (INR)</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-[#f0e8da]">
                 <tr>
-                  <td class="p-3">
-                    <span class="font-serif font-black text-sm text-[#1e2329] uppercase block" id="slipStone">-</span>
-                    <span class="text-[10px] text-[#796c56]">Untreated Natural Astrological Grade</span>
+                  <td class="p-2.5">
+                    <span class="font-serif font-black text-xs sm:text-sm text-[#1e2329] uppercase block" id="slipStone">-</span>
+                    <span class="text-[9px] text-[#796c56]">Untreated Natural Astrological Grade</span>
                   </td>
-                  <td class="p-3 text-center font-mono font-bold text-[#1e2329]" id="slipWeight">-</td>
-                  <td class="p-3 text-center font-mono text-[#8f681a] font-semibold" id="slipCert">-</td>
-                  <td class="p-3 text-right font-serif font-black text-base text-[#11634b]" id="slipAmount">₹0</td>
+                  <td class="p-2.5 text-center font-mono font-bold text-[#1e2329] text-xs" id="slipWeight">-</td>
+                  <td class="p-2.5 text-center font-mono text-[#8f681a] font-semibold text-xs" id="slipCert">-</td>
+                  <td class="p-2.5 text-right font-serif font-black text-sm sm:text-base text-[#11634b]" id="slipAmount">₹0</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 mb-4 border-t border-[#ede4d4] text-xs">
-            <div class="flex-1 space-y-1 text-left w-full sm:w-auto">
+          <div class="relative z-10 flex flex-row items-center justify-between gap-3 pt-1 mb-3 border-t border-[#ede4d4] text-xs">
+            <div class="flex-1 space-y-0.5 text-left min-w-0">
               <div>
-                <span class="text-[10px] font-bold text-[#796c56] uppercase">Special Remarks &amp; Instructions:</span>
-                <p class="text-[#272f37] italic font-medium mt-0.5" id="slipRemarks">-</p>
+                <span class="text-[9px] font-bold text-[#796c56] uppercase">Special Remarks &amp; Instructions:</span>
+                <p class="text-[#272f37] italic font-medium text-[11px] truncate" id="slipRemarks">-</p>
               </div>
-              <div class="flex items-center gap-2 pt-1 text-[11px] text-[#796c56]">
+              <div class="flex items-center gap-2 pt-0.5 text-[10px] text-[#796c56]">
                 <span>• Reference: <strong class="text-[#1e2329] capitalize" id="slipReference">-</strong></span>
                 <span>• Mode: <strong class="text-[#11634b] uppercase" id="slipPayment">CASH</strong></span>
               </div>
             </div>
 
-            <div class="flex items-center gap-3 bg-[#faf6ee] p-2.5 rounded-xl border border-[#ebd7b5] shrink-0">
-              <div id="slipQrContainer" class="w-16 h-16 bg-white p-1 rounded-lg border border-[#d4af37]/40 flex items-center justify-center"></div>
-              <div class="text-[10px] text-[#796c56] leading-tight">
+            <div class="flex items-center gap-2 bg-[#faf6ee] p-1.5 rounded-xl border border-[#ebd7b5] shrink-0">
+              <div id="slipQrContainer" class="w-14 h-14 bg-white p-0.5 rounded-lg border border-[#d4af37]/40 flex items-center justify-center"></div>
+              <div class="text-[9px] text-[#796c56] leading-tight pr-1">
                 <span class="font-bold text-[#8f681a] block font-serif uppercase">Verified Seal</span>
-                <span>Scan with phone</span>
-                <span class="block font-mono text-[9px] text-[#a49680] mt-0.5">Faridi Ledger ID</span>
+                <span>Scan QR</span>
               </div>
             </div>
           </div>
 
-          <div class="relative z-10 pt-4 border-t border-dashed border-[#d4af37]/60 flex justify-between items-end text-[11px]">
+          <div class="relative z-10 pt-2 border-t border-dashed border-[#d4af37]/60 flex justify-between items-end text-[10px]">
             <div>
-              <p class="font-serif font-black text-xs text-[#8f681a] uppercase tracking-wider">FARIDI STONES AJMER</p>
-              <p class="text-[10px] text-[#796c56]">Guaranteed Genuine &amp; Natural</p>
+              <p class="font-serif font-black text-[11px] text-[#8f681a] uppercase tracking-wider">FARIDI STONES AJMER</p>
+              <p class="text-[9px] text-[#796c56]">Guaranteed Genuine &amp; Natural</p>
             </div>
 
             <div class="text-right">
-              <div class="inline-block border-b border-[#272f37] pb-1 px-4 mb-1">
-                <span class="font-serif font-black text-xs text-[#1e2329]">Haji Jawed Faridi</span>
+              <div class="inline-block border-b border-[#272f37] pb-0.5 px-3 mb-0.5">
+                <span class="font-serif font-black text-[11px] text-[#1e2329]">Haji Jawed Faridi</span>
               </div>
-              <p class="text-[10px] text-[#796c56] uppercase tracking-wider">Authorized Gemologist / Signatory</p>
+              <p class="text-[9px] text-[#796c56] uppercase tracking-wider">Authorized Gemologist / Signatory</p>
             </div>
           </div>
 
@@ -1043,7 +1067,6 @@
       const isPost = (c.sellPost || '').toLowerCase() === 'post';
       document.getElementById("dossierChannelBadge").innerText = isPost ? 'Postal Dispatch' : 'Counter Sale';
 
-      // STRICT MOBILE CHECK: Only link if mobile exists and matches exactly
       const hasValidMobile = c.mobile && c.mobile.trim().length >= 8;
       const history = hasValidMobile
         ? records.filter(r => r.mobile && r.mobile.trim() === c.mobile.trim())
@@ -1075,11 +1098,10 @@
         `;
       }).join('');
 
-      // CHECK SAATH AAYE LOG / GROUP LINKING (Supports Dedicated Linked ID & Comments)
+      // SAATH AAYE LOG / GROUP LINKING
       const famSection = document.getElementById("familyLinkingSection");
       const famList = document.getElementById("familyMembersList");
       
-      // Match 4-digit numbers from comments or linkedId
       const foundIds = new Set();
       if (c.linkedId && /^\d+$/.test(c.linkedId.trim())) {
         foundIds.add(c.linkedId.trim());
@@ -1089,7 +1111,6 @@
         matchFam.forEach(idNum => foundIds.add(idNum));
       }
 
-      // Also check if other records have linked to THIS customer's ID
       records.forEach(r => {
         if (r.custId !== c.custId) {
           if (r.linkedId && String(r.linkedId).trim() === String(c.custId).trim()) {
@@ -1100,7 +1121,7 @@
         }
       });
 
-      foundIds.delete(String(c.custId)); // Don't show self
+      foundIds.delete(String(c.custId));
 
       if (foundIds.size > 0) {
         famSection.classList.remove("hidden");
@@ -1155,7 +1176,6 @@
       openModal('customerModal');
     }
 
-    // Trigger New Purchase for Same Customer (Retains Details)
     function triggerNewPurchaseFromDossier() {
       if (!currentDossierRecord) return;
       const c = currentDossierRecord;
@@ -1178,7 +1198,6 @@
       showToast(`Auto-filled for ${c.name}! Add new stone.`);
     }
 
-    // Trigger Add Saathi (New Group Member - Clears Personal Details, Sets Linked ID)
     function triggerAddSaathiFromDossier() {
       if (!currentDossierRecord) return;
       const c = currentDossierRecord;
@@ -1193,7 +1212,6 @@
       showToast(`Linked to #${c.custId}! Enter Saathi's mobile & name.`);
     }
 
-    // STRICT AUTO-FILL: Check ONLY on mobile number match (Minimum 8 digits)
     function checkExistingCustomer() {
       const mob = document.getElementById("inpMobile").value.trim();
       const alertBox = document.getElementById("customerFoundAlert");
@@ -1203,7 +1221,6 @@
         return;
       }
 
-      // STRICT MOBILE MATCH ONLY
       const match = records.find(r => r.mobile && r.mobile.trim() === mob);
       if (match && document.getElementById("formMode").value === "add") {
         document.getElementById("inpName").value = match.name || '';
@@ -1415,8 +1432,8 @@
         try {
           new QRCode(qrEl, {
             text: `FARIDI STONES AJMER | PROP: HAJI JAWED FARIDI | ID: #${c.custId} | CUST: ${c.name.toUpperCase()} | STONE: ${c.stoneName.toUpperCase()} | AMT: Rs.${cleanAmt} | PHONE: +91 9352937928`,
-            width: 58,
-            height: 58,
+            width: 56,
+            height: 56,
             colorDark: "#15110d",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.M
