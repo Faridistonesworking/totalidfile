@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Faridi Stones Ajmer - Royal Gemstone Ledger & Client Dossier</title>
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#062319">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -1534,6 +1535,12 @@ Helpline: +91 9352937928`;
       document.getElementById("toastText").innerText = msg;
       t.classList.remove("translate-y-20", "opacity-0");
       setTimeout(() => t.classList.add("translate-y-20", "opacity-0"), 2500);
+    }
+  </script>
+  
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
     }
   </script>
 </body>
