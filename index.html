@@ -290,7 +290,17 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased">
-
+<div id="faridiSplash">
+    <div class="splash-ring">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.6">
+        <polygon points="12 2 22 9 12 22 2 9 12 2"></polygon>
+        <line x1="2" y1="9" x2="22" y2="9"></line>
+        <polyline points="8 2 12 9 16 2"></polyline>
+      </svg>
+    </div>
+    <div class="splash-title">FARIDI STONES</div>
+    <div class="splash-sub">Ajmer Sharif • Royal Dossier</div>
+  </div>
   <!-- TOP MOVING ANIMATED TICKER -->
   <div class="moving-banner-bar">
     <div class="moving-track">
@@ -1647,12 +1657,10 @@ Helpline: +91 9352937928`;
   </script>
   
  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const splash = document.getElementById('faridiSplash');
-        if (splash) splash.classList.add('hide-splash');
-      }, 1400);
-    });
+    setTimeout(() => {
+      const splash = document.getElementById('faridiSplash');
+      if (splash) splash.classList.add('hide-splash');
+    }, 1400);
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
