@@ -1,11 +1,8 @@
 {
-  "id": "/totalidfile/",
   "name": "Faridi Stones Portal",
   "short_name": "Faridi Stones",
-  "start_url": "/totalidfile/",
-  "scope": "/totalidfile/",
+  "start_url": "./",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#062319",
   "theme_color": "#062319",
   "icons": [
