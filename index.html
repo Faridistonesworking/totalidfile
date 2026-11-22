@@ -1457,6 +1457,13 @@
       openModal('customerModal');
     }
 
+    function toTitleCase(str) {
+      return (str || '')
+        .trim()
+        .toLowerCase()
+        .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
     function handleFormSubmit(e) {
       e.preventDefault();
       const mode = document.getElementById("formMode").value;
@@ -1466,21 +1473,21 @@
 
       const payload = {
         custId: userEnteredId,
-        name: document.getElementById("inpName").value.trim().toLowerCase(),
+        name: toTitleCase(document.getElementById("inpName").value),
         mobile: document.getElementById("inpMobile").value.trim(),
-        motherName: document.getElementById("inpMotherName").value.trim().toLowerCase(),
+        motherName: toTitleCase(document.getElementById("inpMotherName").value),
         dob: document.getElementById("inpDob").value.trim(),
-        stoneName: document.getElementById("inpStoneName").value.trim().toLowerCase(),
+        stoneName: toTitleCase(document.getElementById("inpStoneName").value),
         stoneWeight: document.getElementById("inpStoneWeight").value.trim(),
         certificateNo: document.getElementById("inpCertNo").value.trim() || "-",
         amount: parseAmountClean(document.getElementById("inpAmount").value),
         sellPost: document.getElementById("inpSellPost").value,
         payment: document.getElementById("inpPayment").value,
-        reference: document.getElementById("inpReference").value,
+        reference: toTitleCase(document.getElementById("inpReference").value),
         sellDate: selectedSellDate,
         linkedId: document.getElementById("inpLinkedId").value.trim(),
-        city: document.getElementById("inpCity").value.trim().toLowerCase(),
-        state: document.getElementById("inpState").value.trim().toLowerCase(),
+        city: toTitleCase(document.getElementById("inpCity").value),
+        state: toTitleCase(document.getElementById("inpState").value),
         comments: document.getElementById("inpComments").value.trim()
       };
 
@@ -1495,7 +1502,6 @@
         showToast(`Saved Cust ID #${payload.custId}`);
         playSuccessChime();
       }
-
       saveData();
       generate100IdBatchOptions();
       updateKpis();
